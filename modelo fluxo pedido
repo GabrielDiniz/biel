@@ -1,0 +1,96 @@
+#aprensetar
+*digitar nome
+	pode a exibir menu
+#exibir_menu
+*escolhe 1 categoria
+	pode a exibir_menu_categoria
+#exibe_menu_categoria
+*escolhe 1 produto
+	pode v exibir_menu
+	pode a detalhar_produto
+#detalhar_produto
+	#exibir_valores_produto
+	*escolhe valor
+		pode v exibir_menu
+		pode v exibir_menu_categoria
+		pode a exibir_acompanhamentos 	
+	#exibir_acompanhamentos
+	*escolhe 1 opcao
+		pode v exibir_menu
+		pode v exibir_menu_categoria
+		pode a exibir_acompanhamentos //adiciar mais de 1
+		pode a exibir_extras
+	#exibir_extras	
+	*escolhe 1 opçao
+		pode v exibir_menu
+		pode v exibir_menu_categoria
+		pode v exibir_acompanhamentos
+		pode a exibir_extras //adicioanr mais de 1
+		pode a listar_pedido //completou item pedido
+#listar_pedido
+*decide o que fazer
+	pode a exibir_menu //adicionar outro produto
+	pode v exibir_menu //zerar pedido
+	pode a remover_item_pedido
+	pode a editar_item_pedido
+	pode a pegar_dados_cliente
+	pode a confirmar_pedido //caso ja tenha os dados do cliente confirmados
+
+#remover_item_pedido
+*escolhe o item a retirar
+	pode a listar_pedido // removeu
+	pode v listar_pedido // nao removeu
+#editar_item_pedido
+*escolhe item
+	pode v listar_pedido
+	pode a detalhar_produto //editar os dados ja selecionados
+#pegar_dados_clente
+	#perguntar_rua
+	*digitar rua
+	#perguntar bairro
+	*digitar bairro
+	#perguntar_numero
+	*digitar numero
+	#perguntar_complemento
+	*digitar complemento
+	#perguntar_referencia
+	*escolher
+		pode a perguntar_referencia
+		pode a revisar_endereco
+	#perguntar_referencia
+	*digitar referencia
+#revisar_endereco
+*analisa enredeco
+	pode a alterar_rua
+	pode a alterar_barrio
+	pode a alterar_numero
+	pode a alterar_complemento
+	pode a alterar_referencia
+	pode a detalhar_pagamento
+#alterar_rua
+*digitar rua
+	a revisar_endereco  
+#alterar_barrio
+*digitar barrio
+	a revisar_endereco  
+#alterar_numero
+*digitar numero
+	a revisar_endereco  
+#alterar_complemento
+*digitar complemento
+	a revisar_endereco  
+#alterar_referencia
+*digitar referencia
+	a revisar_endereco  
+#detalhar_pagamento
+	#perguntar_forma_pagamento
+	*escolhe opçao
+		pode a perguntar_troco //se escolheu dinheiro
+		pode a confirmar_pedido //se ecolheu cartao
+	#perguntar_troco
+	*digitar troco
+#confirmar_pedido
+*analisa pedido
+	pode v revisar_endereco
+	pode v listar_pedido // alterar algum item pedido
+	pode v detalhar pagamento

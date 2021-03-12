@@ -1,0 +1,632 @@
+{
+	"categorias_menu":[
+		{
+			"nome":"Hamburgers",
+			"itens":[
+				{
+					"nome":"Caratinga",
+					"descricao":"blend artesanal 100g, queijo mussarela, bacon, presunto, frango, ovo, alface e tomate",
+					"valores":[
+						{
+							"nome":"",
+							"valor":17.69
+						}
+					],
+					"extras":[
+						{
+							"nome":"cebola",
+							"valores":[
+								{
+									"nome":"",
+									"valor":0
+								}
+							]
+						}
+
+					]
+
+				},
+				{
+					"nome":"Ubaporanga",
+					"descricao":"blend artesanal 100g, queijo mussarela, bacon, alface e tomate",
+					"valores":[
+						{
+							"nome":"",
+							"valor":14.69
+						}
+					],
+					"extras":[
+
+					]
+
+				},
+				{
+					"nome":"Inhapim",
+					"descricao":"blend artesanal 100g, queijo mussarela em dobro, frango desfiado, alface e tomate",
+					"valores":[
+						{
+							"nome":"",
+							"valor":15.69
+						}
+					],
+					"extras":[
+						{
+							"nome":"batata palha",
+							"valores":[
+								{
+									"nome":"",
+									"valor":1
+								}
+							]
+						}
+
+					]
+
+				},
+				{
+					"nome":"Bom jesus do galho",
+					"descricao":"blend artesanal 100g, queijo mussarela, queijo gorgonzola, chedar e cebola caramelizada",
+					"valores":[
+						{
+							"nome":"",
+							"valor":16.69
+						}
+					],
+					"extras":[
+
+					]
+
+				},
+				{
+					"nome":"Santa Rita",
+					"descricao":"blend artesanal 100g, bacon, presunto, alface e tomate",
+					"valores":[
+						{
+							"nome":"",
+							"valor":12.99
+						}
+					],
+					"extras":[
+
+					]
+
+				},
+				{
+					"nome":"Entre Folhas",
+					"descricao":"blend artesanal 100g, queijo mussarela, farofa de bacon, alface e tomate",
+					"valores":[
+						{
+							"nome":"",
+							"valor":12.39
+						}
+					],
+					"extras":[
+
+					]
+
+				}
+
+			],
+			"Acompanhamentos":[
+				{
+					"nome":"Molho especial",
+					"opcoes":[
+						{
+							"nome":"Maionese temperada",
+							"valores":[
+								{
+									"nome":"",
+									"valor":0
+								}
+							]
+						},
+						{
+							"nome":"Molho de alho",
+							"valores":[
+								{
+									"nome":"",
+									"valor":0
+								}
+							]
+						},
+						{
+							"nome":"Molho tártaro",
+							"valores":[
+								{
+									"nome":"",
+									"valor":0
+								}
+							]
+						},
+						{
+							"nome":"Molho gorgonzola",
+							"valores":[
+								{
+									"nome":"",
+									"valor":0
+								}
+							]
+						},
+						{
+							"nome":"Molho de azeitona preta",
+							"valores":[
+								{
+									"nome":"",
+									"valor":0
+								}
+							]
+						},
+						{
+							"nome":"Sem molho",
+							"valores":[
+								{
+									"nome":"",
+									"valor":0
+								}
+							]
+						}
+					]
+				},
+				{
+					"nome":"Fritas",
+					"opcoes":[
+						{
+							"nome":"Não acompanha fritas",
+							"valores":[
+								{
+									"nome":"",
+									"valor":0
+								}
+							]
+						},
+						{
+							"nome":"Bata rustica",
+							"valores":[
+								{
+									"nome":"",
+									"valor":5
+								}
+							]
+						},
+						{
+							"nome":"Batata Canoa",
+							"valores":[
+								{
+									"nome":"",
+									"valor":5
+								}
+							]
+						},
+						{
+							"nome":"Batata chips",
+							"valores":[
+								{
+									"nome":"",
+									"valor":5
+								}
+							]
+						}
+					]
+				}
+			],
+			"extras":[
+				{
+					"nome":"milho e batata",
+					"valores":[
+						{
+							"nome":"",
+							"valor":1
+						}
+					]
+				},
+				{
+					"nome":"quiejo",
+					"valores":[
+						{
+							"nome":"",
+							"valor":1.5
+						}
+					]
+				},
+				{
+					"nome":"bacon",
+					"valores":[
+						{
+							"nome":"",
+							"valor":2
+						}
+					]
+				},
+				{
+					"nome":"farofa de bacon",
+					"valores":[
+						{
+							"nome":"",
+							"valor":2
+						}
+					]
+				},
+				{
+					"nome":"blend artesanal 100g",
+					"valores":[
+						{
+							"nome":"",
+							"valor":6.5
+						}
+					]
+				},
+				{
+					"nome":"quejo mussarela",
+					"valores":[
+						{
+							"nome":"",
+							"valor":1
+						}
+					]
+				},
+				{
+					"nome":"queijo chedar",
+					"valores":[
+						{
+							"nome":"",
+							"valor":1
+						}
+					]
+				},
+				{
+					"nome":"queijo chedar cremoso",
+					"valores":[
+						{
+							"nome":"",
+							"valor":1.5
+						}
+					]
+				},
+				{
+					"nome":"presunto",
+					"valores":[
+						{
+							"nome":"",
+							"valor":1
+						}
+					]
+				}
+			]
+		},
+		{
+			"nome":"Pizzas",
+			"itens":[
+				{
+					"nome":"AMERICANA",
+					"descricao":"MOLHO DE TOMATE, MUSSARELA, BACON, CALABRESA, OVOS E CEBOLA",
+					"valores":[
+						{
+							"nome":"Broto (4 fatias)",
+							"valor":12.69
+						},
+						{
+							"nome":"Média (6 fatias)",
+							"valor":18.69
+						},
+						{
+							"nome":"Grande (8 fatias)",
+							"valor":23.69
+						},
+						{
+							"nome":"Família (12 fatias)",
+							"valor":30.69
+						}
+					]
+
+				},
+				{
+					"nome":"APRESUNTADA",
+					"descricao":"MOLHO DE TOMATE, PRESUNTO E MUSSARELA",
+					"valores":[
+						{
+							"nome":"Broto (4 fatias)",
+							"valor":12.69
+						},
+						{
+							"nome":"Média (6 fatias)",
+							"valor":18.69
+						},
+						{
+							"nome":"Grande (8 fatias)",
+							"valor":23.69
+						},
+						{
+							"nome":"Família (12 fatias)",
+							"valor":30.69
+						}
+					]
+
+				},
+				{
+					"nome":"CROCANTE",
+					"descricao":"MOLHO DE TOMATE, MUSSARELA (2 CAMADAS), CATUPIRY, BATATA PALHA (DEPOIS DE ASSADA)",
+					"valores":[
+						{
+							"nome":"Broto (4 fatias)",
+							"valor":12.69
+						},
+						{
+							"nome":"Média (6 fatias)",
+							"valor":18.69
+						},
+						{
+							"nome":"Grande (8 fatias)",
+							"valor":23.69
+						},
+						{
+							"nome":"Família (12 fatias)",
+							"valor":30.69
+						}
+					]
+
+				},
+				{
+					"nome":"MILHO",
+					"descricao":"MOLHO DE TOMATE, MUSSARELA E MILHO",
+					"valores":[
+						{
+							"nome":"Broto (4 fatias)",
+							"valor":12.69
+						},
+						{
+							"nome":"Média (6 fatias)",
+							"valor":18.69
+						},
+						{
+							"nome":"Grande (8 fatias)",
+							"valor":23.69
+						},
+						{
+							"nome":"Família (12 fatias)",
+							"valor":30.69
+						}
+					]
+
+				},
+				{
+					"nome":"BACON",
+					"descricao":"MOLHO DE TOMATE, MUSSARELA E BACON",
+					"valores":[
+						{
+							"nome":"Broto (4 fatias)",
+							"valor":12.69
+						},
+						{
+							"nome":"Média (6 fatias)",
+							"valor":18.69
+						},
+						{
+							"nome":"Grande (8 fatias)",
+							"valor":23.69
+						},
+						{
+							"nome":"Família (12 fatias)",
+							"valor":30.69
+						}
+					]
+
+				},
+				{
+					"nome":"FRANGO C/ CATUPIRY",
+					"descricao":"MOLHO DE TOMATE, MUSSARELA, FRANGO DESFIADO AO MOLHO DE CATUPIRY",
+					"valores":[
+						{
+							"nome":"Broto (4 fatias)",
+							"valor":12.69
+						},
+						{
+							"nome":"Média (6 fatias)",
+							"valor":18.69
+						},
+						{
+							"nome":"Grande (8 fatias)",
+							"valor":23.69
+						},
+						{
+							"nome":"Família (12 fatias)",
+							"valor":30.69
+						}
+					]
+
+				}
+
+			],
+			"Acompanhamentos":[
+				{
+					"nome":"Borda",
+					"opcoes":[
+						{
+							"nome":"Chedar",
+							"valores":[
+								{
+									"nome":"",
+									"valor":3
+								}
+							]
+						},
+						{
+							"nome":"Gorgonzola",
+							"valores":[
+								{
+									"nome":"",
+									"valor":4
+								}
+							]
+						},
+						{
+							"nome":"Catupiry",
+							"valores":[
+								{
+									"nome":"",
+									"valor":3
+								}
+							]
+						},
+						{
+							"nome":"Sem Borda",
+							"valores":[
+								{
+									"nome":"",
+									"valor":0
+								}
+							]
+						}
+					]
+				}
+			],
+			"extras":[
+
+				{
+					"nome":"mussarela",
+					"valores":[
+						{
+							"nome":"",
+							"valor":1.5
+						}
+					]
+				},
+				{
+					"nome":"bacon",
+					"valores":[
+						{
+							"nome":"",
+							"valor":2
+						}
+					]
+				},
+				{
+					"nome":"farofa de bacon",
+					"valores":[
+						{
+							"nome":"",
+							"valor":2
+						}
+					]
+				},
+				{
+					"nome":"queijo chedar",
+					"valores":[
+						{
+							"nome":"",
+							"valor":1
+						}
+					]
+				},
+				{
+					"nome":"queijo chedar cremoso",
+					"valores":[
+						{
+							"nome":"",
+							"valor":1.5
+						}
+					]
+				},
+				{
+					"nome":"presunto",
+					"valores":[
+						{
+							"nome":"",
+							"valor":1
+						}
+					]
+				},
+				{
+					"nome":"cebola",
+					"valores":[
+						{
+							"nome":"",
+							"valor":0
+						}
+					]
+				},
+				{
+					"nome":"pimentao",
+					"valores":[
+						{
+							"nome":"",
+							"valor":0
+						}
+					]
+				}
+			]
+		},
+		{
+			"nome":"Bebidas",
+			"itens":[
+				{
+					"nome":"Refrigerantes 2L",
+					"descricao":"",
+					"valores":[
+						{
+							"nome":"Coca-cola",
+							"valor":10
+						},
+						{
+							"nome":"Guaraná Antartica",
+							"valor":9
+						},
+						{
+							"nome":"Fanta Laranja",
+							"valor":9
+						}
+					]
+
+				},
+				{
+					"nome":"Refrigerantes 1L",
+					"descricao":"",
+					"valores":[
+						{
+							"nome":"Coca-cola",
+							"valor":7
+						},
+						{
+							"nome":"Guaraná Antartica",
+							"valor":6
+						},
+						{
+							"nome":"Fanta Laranja",
+							"valor":6
+						}
+					]
+
+				},
+				{
+					"nome":"Refrigerantes Lata",
+					"descricao":"",
+					"valores":[
+						{
+							"nome":"Coca-cola",
+							"valor":5
+						},
+						{
+							"nome":"Guaraná Antartica",
+							"valor":4
+						},
+						{
+							"nome":"Fanta Laranja",
+							"valor":4
+						}
+					]
+
+				}
+
+
+			]
+		}
+	],
+"replaces":{
+	"voltar_menu_principal": "Voltar ao início"
+},
+"apresentar":"Oi, eu sou Biel, o robô aqui da lanchonete, irei anotar o seu pedido.\nMas primeiramente, como voce quer que eu te chame?\n",
+"mensagem_pane":"Desculpe, meus parafusos estavam soltos e acabei perdendo alguma coisa que ja conversamos.\nJá consertei tudo aqui, mas  terei que começar nossa conversa do zero.\nComo voce gostaria que eu te chame?",
+"opcoes_categorias":"{nome_cliente} aqui esta o menu \n{categorias}\nEscolha uma categoria",
+"opcoes_produtos":"Ok {nome_cliente}, vejo que voce gosta de {nome_categoria}...\n Temos essas opções:\n{produtos}\nQual voce escolhe?",
+"valores_produto":"Voce escolheu {nome_produto}.\nQual opção?:\n{valores_produto}",
+"item_inexistente":"Não existe esse item, meu caro..."
+}
