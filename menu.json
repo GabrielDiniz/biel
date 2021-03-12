@@ -107,7 +107,7 @@
 				}
 
 			],
-			"Acompanhamentos":[
+			"acompanhamentos":[
 				{
 					"nome":"Molho especial",
 					"opcoes":[
@@ -436,7 +436,7 @@
 				}
 
 			],
-			"Acompanhamentos":[
+			"acompanhamentos":[
 				{
 					"nome":"Borda",
 					"opcoes":[
@@ -621,12 +621,14 @@
 		}
 	],
 "replaces":{
-	"voltar_menu_principal": "Voltar ao início"
+	"voltar_menu_principal": "Voltar ao início",
+	"voltar_menu_categorias": "Voltar a listagem de produtos"
 },
 "apresentar":"Oi, eu sou Biel, o robô aqui da lanchonete, irei anotar o seu pedido.\nMas primeiramente, como voce quer que eu te chame?\n",
 "mensagem_pane":"Desculpe, meus parafusos estavam soltos e acabei perdendo alguma coisa que ja conversamos.\nJá consertei tudo aqui, mas  terei que começar nossa conversa do zero.\nComo voce gostaria que eu te chame?",
 "opcoes_categorias":"{nome_cliente} aqui esta o menu \n{categorias}\nEscolha uma categoria",
 "opcoes_produtos":"Ok {nome_cliente}, vejo que voce gosta de {nome_categoria}...\n Temos essas opções:\n{produtos}\nQual voce escolhe?",
 "valores_produto":"Voce escolheu {nome_produto}.\nQual opção?:\n{valores_produto}",
+"acompanhamentos_produto":"voce deseja adicionar algum acompanhamento abaixo ao pedido?\n{acompanhamentos_produto}",
 "item_inexistente":"Não existe esse item, meu caro..."
 }

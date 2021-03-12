@@ -13,12 +13,15 @@ module.exports = class Menu{
 		return this.content.item_inexistente;
 	}
 
-	getCategoria = (id) => {
-		return this.content.categorias_menu[id];
+	getCategoria = (pedido) => {
+		return this.content.categorias_menu[pedido.categoria];
 	}
 
-	getProduto = (categoria,produto) => {
-		return this.content.categorias_menu[categoria].itens[produto];
+	getProduto = (pedido) => {
+		return this.content.categorias_menu[pedido.categoria].itens[pedido.produto];
+	}
+	getOpcaoProduto = (pedido) => {
+		return this.content.categorias_menu[pedido.categoria].acompanhamentos.opcoes[pedido.opcao];
 	}
 	getMensagemPane = () => {
 		return this.content.mensagem_pane;
