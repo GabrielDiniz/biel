@@ -1,104 +1,37 @@
-const Menu = require("./menu");
-const menu = new Menu("./menu.json");
+const Menu = require("./Menu");
+const menu = new Menu("./Menu.json");
+const Mensagem = require("./Mensagem");
+var mensagem;
 module.exports = class Processor {
 	constructor(){
 		this.pedido={};
 		this.statusConversa = "inicio";
 		this.itemPedidoAtual = {};
-		this.replaces=menu.getReplaces();
-		this.navegacao = {
-			voltar_menu_principal:"\n\n0 - {voltar_menu_principal}\n",
-			voltar_menu_categorias:"\n\nV - {voltar_menu_categorias}\n"
-		}
+		mensagem = new Mensagem();
+		
 		//console.log(this.menu);
 
 	}
 	
-	inicio = (msg) =>{
-		this.statusConversa="apresentar"
-		return this.printf(menu.getApresentacao());
-	}
-
-	apresentar = (msg) =>{
-		this.pedido.nome_cliente = msg;
-		this.replaces.nome_cliente = msg;
-		this.statusConversa="exibir_menu";
-		return this.getOpcoesCategorias();
-	}
-
-	exibirMenu = (msg) =>{
-		const categoria = Number(msg)-1;
-		this.itemPedidoAtual.categoria = categoria;
-		if (menu.getCategoria(this.itemPedidoAtual)===undefined) {
-			return [this.printf(menu.getItemInexistente()), this.getOpcoesCategorias()];
-		}else{
-			this.statusConversa = "exibe_menu_categoria";
-			this.replaces.nome_categoria=menu.getCategoria(this.itemPedidoAtual).nome;
-			return this.getOpcoesProdutos(categoria);
-		}
-	}
-
-	exibeMenuCategoria = (msg) =>{
-		const produto = Number(msg)-1;
-		this.itemPedidoAtual.produto = produto;
-		if (msg==="0") {
-			this.reiniciarPedidoAtual();
-			return this.getOpcoesCategorias();
-		}else if (menu.getProduto(this.itemPedidoAtual)===undefined) {
-			return [this.printf(menu.getItemInexistente()), this.getOpcoesProdutos()];
-		}else{
-			this.statusConversa="exibir_valores_produto";
-			this.replaces.nome_produto = menu.getProduto(this.itemPedidoAtual).nome;
-			return this.getValoresProduto();
-		}
-	}
-	/**
-	@TODO percorrer as varias opções de tipos de acompanhamentos de cada produto 
-	Ex.: Hamburger: Molhos ou batatas
-
-	no momento ele esta considerando apenas 1 acompanhamento por produto (errado)
-	*/
-
-
-	exibirValoresProduto = (msg) =>{
-		const opcao = Number(msg)-1;
-		this.itemPedidoAtual.opcao = opcao;
-		if (msg==="0") {
-			this.reiniciarPedidoAtual();
-			return this.getOpcoesCategorias();
-		}else if(msg === "V"){
-			this.statusConversa = "exibe_menu_categoria";
-			return this.getOpcoesProdutos();
-		}else if (menu.getOpcaoProduto(this.itemPedidoAtual)===undefined) {
-			return [this.printf(menu.getItemInexistente()), this.getValoresProduto()];
-		}else {
-			this.statusConversa = "exibir_acompanhamentos";
-			this.replaces.opcao = menu.getOpcaoProduto(this.itemPedidoAtual).nome;
-			return menu.getAcompanhamentos();
-		}
-	}
-
-	default = (msg) =>{
-		this.statusConversa="apresentar"
-		return this.printf(menu.getMensagemPane());
-	}
-
 	processa = async (msg) => {
 		switch(this.statusConversa){
 			case "inicio":
-				return this.inicio(msg);
-				break;
-			case "apresentar":
 				return this.apresentar(msg);
 				break;
-			case "exibir_menu":
+			case "apresentar":
 				return this.exibirMenu(msg);
 				break;
-			case "exibe_menu_categoria":
+			case "exibir_menu":
 				return this.exibeMenuCategoria(msg);
 				break;
-			case "exibir_valores_produto":
+			case "exibe_menu_categoria":
 				return this.exibirValoresProduto(msg);
+				break;
+			case "exibir_valores_produto":
+				return this.exibirAcompanhamentos(msg,0);
+				break;
+			case "exibir_acompanhamentos":
+				return this.exibirAcompanhamentos(msg,this.itemPedidoAtual.acompanhamentoAtual+1);
 				break;
 			default:
 				return this.default(msg);
@@ -109,25 +42,105 @@ module.exports = class Processor {
 		this.itemPedidoAtual = {};
 		this.statusConversa="exibir_menu";
 	}
-
-	printf = (string) => {
-		for(let key in this.replaces){
-			let bkey = "{"+key+"}";
-			string = string.replace(bkey,this.replaces[key]);
-		};
-		return string;
+	
+	apresentar = (msg) =>{
+		this.statusConversa="apresentar"
+		return mensagem.getApresentacao();
 	}
 
-	getOpcoesCategorias = () =>{
-		return this.printf(menu.getOpcoesCategorias());
+	exibirMenu = (msg) =>{
+		this.pedido.nome_cliente = msg;
+		mensagem.replaces.nome_cliente = msg;
+		this.statusConversa="exibir_menu";
+		return mensagem.getOpcoesCategorias();
 	}
 
-	getOpcoesProdutos = () =>{
-		return this.printf(menu.getOpcoesProdutos()+this.navegacao.voltar_menu_principal);
+	exibeMenuCategoria = (msg) =>{
+		const categoria = Number(msg)-1;
+		this.itemPedidoAtual.categoria = categoria;
+		if (menu.getCategoria(this.itemPedidoAtual)===undefined) {
+			return [mensagem.getItemInexistente(), mensagem.getOpcoesCategorias()];
+		}else{
+			this.statusConversa = "exibe_menu_categoria";
+			mensagem.replaces.nome_categoria=menu.getCategoria(this.itemPedidoAtual).nome;
+			return mensagem.getOpcoesProdutos(categoria);
+		}
 	}
 
-	getValoresProduto = ()  =>{
-		return this.printf(menu.getValoresProduto()+this.navegacao.voltar_menu_categorias+this.navegacao.voltar_menu_principal);
+	exibirValoresProduto = (msg) =>{
+		const produto = Number(msg)-1;
+		this.itemPedidoAtual.produto = produto;
+		if (msg==="0") {
+			this.reiniciarPedidoAtual();
+			return mensagem.getOpcoesCategorias();
+		}else if (menu.getProduto(this.itemPedidoAtual)===undefined) {
+			return [mensagem.getItemInexistente(), mensagem.getOpcoesProdutos()];
+		}else{
+			this.statusConversa="exibir_valores_produto";
+			mensagem.replaces.nome_produto = menu.getProduto(this.itemPedidoAtual).nome;
+			return mensagem.getValoresProduto();
+		}
 	}
+	/**
+	@TODO parar de exibir os acompanhamentos quando terminar a lista de escolhas possiveis [molho, fritas... exception]
+	*/
+
+
+	exibirAcompanhamentos = (msg,acompanhamentoAtual) =>{
+		const opcao = Number(msg)-1;
+		if (acompanhamentoAtual === 0) {
+			this.itemPedidoAtual.acompanhamentos=[];
+			this.itemPedidoAtual.acompanhamentoAtual=0;
+			this.itemPedidoAtual.valorProduto = opcao;
+			mensagem.replaces.nome_acompanhamento = menu.getAcompanhamentoNome(this.itemPedidoAtual);
+
+			if (msg==="0") {
+				this.reiniciarPedidoAtual();
+				return mensagem.getOpcoesCategorias();
+			}else if(msg === "V"){
+				this.statusConversa = "exibe_menu_categoria";
+				return mensagem.getOpcoesProdutos();
+			}else if (menu.getValorProduto(this.itemPedidoAtual)===undefined) {
+				return [mensagem.getItemInexistente(), mensagem.getValoresProduto()];
+			}else {
+				if (menu.getQtdAcompanhamentosProduto(this.itemPedidoAtual) > 0) {
+					mensagem.replaces.valor_produto_nome = menu.getValorProduto(this.itemPedidoAtual).nome;
+					
+					this.statusConversa = "exibir_acompanhamentos";
+					return mensagem.getAcompanhamentos();
+				}else{
+					this.statusConversa = "exibir_extras";
+					return mensagem.exibirExtras();
+				}
+			}
+		}else{
+
+			/*
+			 @TODO !!!!
+			 tratamentos da opção escolhida de acompanhamentos
+			*/
+			this.itemPedidoAtual.acompanhamentos[acompanhamentoAtual-1]=opcao;
+			this.itemPedidoAtual.acompanhamentoAtual=acompanhamentoAtual;
+			mensagem.replaces.nome_acompanhamento = menu.getAcompanhamentoNome(this.itemPedidoAtual);
+			this.statusConversa = "exibir_acompanhamentos";
+			return mensagem.getAcompanhamentos();
+		}
+
+	}
+
+	exibirExtras = (msg,extraAtual) =>{
+		/*
+		@TODO !!! 
+		tratar eventualidade do item atual nao possuir acompanhamento na etapa anterior
+		*/
+
+	}
+
+	default = (msg) =>{
+		this.statusConversa="apresentar"
+		return mensagem.getMensagemPane();
+	}
+
+
 }
 

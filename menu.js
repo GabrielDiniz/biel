@@ -20,8 +20,17 @@ module.exports = class Menu{
 	getProduto = (pedido) => {
 		return this.content.categorias_menu[pedido.categoria].itens[pedido.produto];
 	}
-	getOpcaoProduto = (pedido) => {
-		return this.content.categorias_menu[pedido.categoria].acompanhamentos.opcoes[pedido.opcao];
+	getValorProduto = (pedido) => {
+		return this.content.categorias_menu[pedido.categoria].itens[pedido.produto].valores[pedido.valorProduto];
+	}
+	getQtdAcompanhamentosProduto = (pedido) => {
+		return this.content.categorias_menu[pedido.categoria].acompanhamentos.length;
+	}
+	getAcompanhamentoNome = (pedido) =>{
+		return this.content.categorias_menu[pedido.categoria].acompanhamentos[pedido.acompanhamentoAtual].nome;
+	}
+	getAcompanhamentoProduto = (pedido) => {
+		return this.content.categorias_menu[pedido.categoria].acompanhamentos[pedido.acompanhamentoAtual].opcoes[pedido.opcao];
 	}
 	getMensagemPane = () => {
 		return this.content.mensagem_pane;
@@ -37,5 +46,9 @@ module.exports = class Menu{
 
 	getValoresProduto = () =>{
 		return this.content.valores_produto;
+	}
+
+	getAcompanhamentos = () =>{
+		return this.content.acompanhamentos_produto;
 	}
 }
