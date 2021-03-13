@@ -33,6 +33,8 @@ module.exports = class Processor {
 			case "exibir_acompanhamentos":
 				return this.exibirAcompanhamentos(msg,this.itemPedidoAtual.acompanhamentoAtual+1);
 				break;
+			case "exibir_extras":
+				return this.exibirExtras(msg,0);
 			default:
 				return this.default(msg);
 		}
@@ -42,7 +44,7 @@ module.exports = class Processor {
 		this.itemPedidoAtual = {};
 		this.statusConversa="exibir_menu";
 	}
-	
+
 	apresentar = (msg) =>{
 		this.statusConversa="apresentar"
 		return mensagem.getApresentacao();
@@ -88,19 +90,21 @@ module.exports = class Processor {
 
 	exibirAcompanhamentos = (msg,acompanhamentoAtual) =>{
 		const opcao = Number(msg)-1;
+		if (msg==="0") {
+			this.reiniciarPedidoAtual();
+			return mensagem.getOpcoesCategorias();
+		}
 		if (acompanhamentoAtual === 0) {
+			if(msg === "V"){
+				this.statusConversa = "exibe_menu_categoria";
+				return mensagem.getOpcoesProdutos();
+			}
 			this.itemPedidoAtual.acompanhamentos=[];
 			this.itemPedidoAtual.acompanhamentoAtual=0;
 			this.itemPedidoAtual.valorProduto = opcao;
-			mensagem.replaces.nome_acompanhamento = menu.getAcompanhamentoNome(this.itemPedidoAtual);
+			mensagem.replaces.nome_acompanhamento = menu.getAcompanhamento(this.itemPedidoAtual).nome;
 
-			if (msg==="0") {
-				this.reiniciarPedidoAtual();
-				return mensagem.getOpcoesCategorias();
-			}else if(msg === "V"){
-				this.statusConversa = "exibe_menu_categoria";
-				return mensagem.getOpcoesProdutos();
-			}else if (menu.getValorProduto(this.itemPedidoAtual)===undefined) {
+			if (menu.getValorProduto(this.itemPedidoAtual)===undefined) {
 				return [mensagem.getItemInexistente(), mensagem.getValoresProduto()];
 			}else {
 				if (menu.getQtdAcompanhamentosProduto(this.itemPedidoAtual) > 0) {
@@ -119,11 +123,34 @@ module.exports = class Processor {
 			 @TODO !!!!
 			 tratamentos da opção escolhida de acompanhamentos
 			*/
-			this.itemPedidoAtual.acompanhamentos[acompanhamentoAtual-1]=opcao;
-			this.itemPedidoAtual.acompanhamentoAtual=acompanhamentoAtual;
-			mensagem.replaces.nome_acompanhamento = menu.getAcompanhamentoNome(this.itemPedidoAtual);
-			this.statusConversa = "exibir_acompanhamentos";
-			return mensagem.getAcompanhamentos();
+
+			if(msg === "V"){
+				this.itemPedidoAtual.acompanhamentoAtual--;
+				mensagem.replaces.valor_produto_nome = menu.getValorProduto(this.itemPedidoAtual).nome;
+				this.statusConversa = "exibir_acompanhamentos";
+				return mensagem.getAcompanhamentos();
+			}
+
+			this.itemPedidoAtual.acompanhamentos[this.itemPedidoAtual.acompanhamentoAtual]=opcao;
+			
+			if (menu.getAcompanhamentoProduto(this.itemPedidoAtual) === undefined) {
+				this.itemPedidoAtual.acompanhamentoAtual--;
+				return [mensagem.getItemInexistente(),mensagem.getAcompanhamentos()];
+			}else{
+				this.itemPedidoAtual.acompanhamentoAtual=acompanhamentoAtual;
+				if (menu.getAcompanhamento(this.itemPedidoAtual)===undefined) {
+					this.statusConversa = "exibir_extras";
+					return mensagem.getExtras();
+				}else{
+					mensagem.replaces.nome_acompanhamento = menu.getAcompanhamento(this.itemPedidoAtual).nome;
+
+					this.statusConversa = "exibir_acompanhamentos";
+					return mensagem.getAcompanhamentos();
+				}
+			}
+			
+
+
 		}
 
 	}
@@ -133,7 +160,7 @@ module.exports = class Processor {
 		@TODO !!! 
 		tratar eventualidade do item atual nao possuir acompanhamento na etapa anterior
 		*/
-
+		return "Extras!!!!!";
 	}
 
 	default = (msg) =>{

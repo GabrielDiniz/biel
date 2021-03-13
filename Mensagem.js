@@ -6,7 +6,8 @@ module.exports =class Mensagem {
 		this.replaces = menu.getReplaces();
 		this.navegacao = {
 			voltar_menu_principal:"\n\n0 - {voltar_menu_principal}\n",
-			voltar_menu_categorias:"\n\nV - {voltar_menu_categorias}\n"
+			voltar_menu_categorias:"\n\nV - {voltar_menu_categorias}\n",
+			voltar_item:"\n\nV - {voltar_item}\n",
 		}
 	}
 
@@ -38,10 +39,10 @@ module.exports =class Mensagem {
 		return this.printf(menu.getValoresProduto()+this.navegacao.voltar_menu_categorias+this.navegacao.voltar_menu_principal);
 	}
 	getAcompanhamentos = () => {
-		return this.printf(menu.getAcompanhamentos()+this.navegacao.voltar_menu_categorias+this.navegacao.voltar_menu_principal)
+		return this.printf(menu.getAcompanhamentos()+this.navegacao.voltar_item+this.navegacao.voltar_menu_principal)
 	}
 
 	getExtras = () => {
-		return printf("extras");
+		return this.printf("extras");
 	}
 }

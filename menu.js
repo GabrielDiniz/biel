@@ -26,11 +26,11 @@ module.exports = class Menu{
 	getQtdAcompanhamentosProduto = (pedido) => {
 		return this.content.categorias_menu[pedido.categoria].acompanhamentos.length;
 	}
-	getAcompanhamentoNome = (pedido) =>{
-		return this.content.categorias_menu[pedido.categoria].acompanhamentos[pedido.acompanhamentoAtual].nome;
+	getAcompanhamento = (pedido) =>{
+		return this.content.categorias_menu[pedido.categoria].acompanhamentos[pedido.acompanhamentoAtual];
 	}
 	getAcompanhamentoProduto = (pedido) => {
-		return this.content.categorias_menu[pedido.categoria].acompanhamentos[pedido.acompanhamentoAtual].opcoes[pedido.opcao];
+		return this.content.categorias_menu[pedido.categoria].acompanhamentos[pedido.acompanhamentoAtual].opcoes[pedido.acompanhamentos[pedido.acompanhamentoAtual]];
 	}
 	getMensagemPane = () => {
 		return this.content.mensagem_pane;

@@ -622,7 +622,8 @@
 	],
 "replaces":{
 	"voltar_menu_principal": "Voltar ao início",
-	"voltar_menu_categorias": "Voltar a listagem de produtos"
+	"voltar_menu_categorias": "Voltar a listagem de produtos",
+	"voltar_item":"Voltar ao item anterior"
 },
 "apresentar":"Oi, eu sou Biel, o robô aqui da lanchonete, irei anotar o seu pedido.\nMas primeiramente, como voce quer que eu te chame?\n",
 "mensagem_pane":"Desculpe, meus parafusos estavam soltos e acabei perdendo alguma coisa que ja conversamos.\nJá consertei tudo aqui, mas  terei que começar nossa conversa do zero.\nComo voce gostaria que eu te chame?",
