@@ -12,7 +12,7 @@ if (fs.existsSync(SESSION_FILE_PATH)) {
 }
 
 const queue = new Queue();
-const client = new wa.Client({ puppeteer: { headless: false }, session: sessionCfg });
+const client = new wa.Client({ puppeteer: { headless: true }, session: sessionCfg });
 // You can use an existing session and avoid scanning a QR code by adding a "session" object to the client options.
 // This object must include WABrowserId, WASecretBundle, WAToken1 and WAToken2.
 

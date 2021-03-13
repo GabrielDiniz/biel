@@ -15,7 +15,8 @@ module.exports = class Processor {
 	
 	/*
 	@TODO!!!
-	Montar exiobição dos itens do menu
+	1 - Montar exiobição dos itens do menu
+	2 - verificar tratamento de concocrrencia de varias conversas
 	*/
 
 	processa = async (msg) => {
@@ -58,6 +59,7 @@ module.exports = class Processor {
 	exibirMenu = (msg) =>{
 		this.pedido.nome_cliente = msg;
 		mensagem.replaces.nome_cliente = msg;
+		mensagem.replaces.categorias = mensagem.getListagemCategorias();
 		this.statusConversa="exibir_menu";
 		return mensagem.getOpcoesCategorias();
 	}
@@ -70,6 +72,7 @@ module.exports = class Processor {
 		}else{
 			this.statusConversa = "exibe_menu_categoria";
 			mensagem.replaces.nome_categoria=menu.getCategoria(this.itemPedidoAtual).nome;
+			mensagem.replaces.produtos=mensagem.getListagemProdutos(this.itemPedidoAtual);
 			return mensagem.getOpcoesProdutos(categoria);
 		}
 	}
@@ -91,6 +94,7 @@ module.exports = class Processor {
 		}else{
 			this.statusConversa="exibir_valores_produto";
 			mensagem.replaces.nome_produto = menu.getProduto(this.itemPedidoAtual).nome;
+			mensagem.replaces.valores_produto = mensagem.getListagemValoresProdutos(this.itemPedidoAtual);
 			return mensagem.getValoresProduto();
 		}
 	}
@@ -117,6 +121,7 @@ module.exports = class Processor {
 			this.itemPedidoAtual.acompanhamentoAtual=0;
 			this.itemPedidoAtual.valorProduto = opcao;
 			mensagem.replaces.nome_acompanhamento = menu.getAcompanhamento(this.itemPedidoAtual).nome;
+			mensagem.replaces.acompanhamentos_produto = mensagem.getListagemAcompanhamentos(this.itemPedidoAtual);
 
 			if (menu.getValorProduto(this.itemPedidoAtual)===undefined) {
 				return [mensagem.getItemInexistente(), mensagem.getValoresProduto()];
@@ -139,6 +144,7 @@ module.exports = class Processor {
 					return mensagem.getOpcoesProdutos();
 				}else{
 					mensagem.replaces.nome_acompanhamento = menu.getAcompanhamento(this.itemPedidoAtual).nome;
+					mensagem.replaces.acompanhamentos_produto = mensagem.getListagemAcompanhamentos(this.itemPedidoAtual);
 					this.statusConversa = "exibir_acompanhamentos";
 					return mensagem.getAcompanhamentos();
 				}
@@ -156,6 +162,7 @@ module.exports = class Processor {
 					return mensagem.getExtras();
 				}else{
 					mensagem.replaces.nome_acompanhamento = menu.getAcompanhamento(this.itemPedidoAtual).nome;
+					mensagem.replaces.acompanhamentos_produto = mensagem.getListagemAcompanhamentos(this.itemPedidoAtual);
 
 					this.statusConversa = "exibir_acompanhamentos";
 					return mensagem.getAcompanhamentos();

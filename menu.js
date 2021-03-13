@@ -2,6 +2,42 @@ module.exports = class Menu{
 	constructor(file){
 		this.content = require(file);
 	}
+
+	getLabelCategorias = () =>{
+		let ret = [];
+		this.content.categorias_menu.forEach((categoria)=>{
+			ret.push(categoria.nome);
+		});	
+		return ret;
+	}
+	getLabelProdutos = (pedido) =>{
+		let ret = [];
+		this.content.categorias_menu[pedido.categoria].itens.forEach((produto)=>{
+			ret.push({
+				nome:produto.nome,
+				descricao:produto.descricao,
+				valor:produto.valores[0].valor
+			});
+		});	
+		return ret;
+	}
+
+	getLabelValoresProdutos = (pedido) =>{
+		let ret = [];
+		this.content.categorias_menu[pedido.categoria].itens[pedido.produto].valores.forEach((valor)=>{
+			ret.push(valor);
+		});	
+		return ret;
+	}
+
+	getLabelAcompanhamentos = (pedido) => {
+		let ret = [];
+		this.content.categorias_menu[pedido.categoria].acompanhamentos[pedido.acompanhamentoAtual].opcoes.forEach((acompanhamento)=>{
+			ret.push(acompanhamento);
+		});	
+		return ret;	
+	}
+
 	getReplaces = () => {
 		return this.content.replaces;
 	}
@@ -51,4 +87,5 @@ module.exports = class Menu{
 	getAcompanhamentos = () =>{
 		return this.content.acompanhamentos_produto;
 	}
+
 }
