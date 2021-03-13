@@ -83,11 +83,8 @@ module.exports = class Processor {
 			return mensagem.getValoresProduto();
 		}
 	}
-	/**
-	@TODO parar de exibir os acompanhamentos quando terminar a lista de escolhas possiveis [molho, fritas... exception]
-	*/
 
-
+	
 	exibirAcompanhamentos = (msg,acompanhamentoAtual) =>{
 		const opcao = Number(msg)-1;
 		if (msg==="0") {
@@ -121,14 +118,6 @@ module.exports = class Processor {
 				}
 			}
 		}else{
-
-			/*
-			 @TODO !!!!
-			 tratamentos da opção escolhida de acompanhamentos
-			*/
-		console.log(acompanhamentoAtual+"//////");
-		console.log(this.itemPedidoAtual.acompanhamentoAtual+"//////");
-
 			if(msg === "V"){
 				this.itemPedidoAtual.acompanhamentoAtual--;
 				if (this.itemPedidoAtual.acompanhamentoAtual < 0) {
