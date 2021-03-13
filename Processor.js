@@ -13,6 +13,11 @@ module.exports = class Processor {
 
 	}
 	
+	/*
+	@TODO!!!
+	Montar exiobição dos itens do menu
+	*/
+
 	processa = async (msg) => {
 		switch(this.statusConversa){
 			case "inicio":
@@ -69,6 +74,12 @@ module.exports = class Processor {
 		}
 	}
 
+
+	/*
+	@TODO!!!!
+	Tratar quando não há acompanhamentos
+	*/
+
 	exibirValoresProduto = (msg) =>{
 		const produto = Number(msg)-1;
 		this.itemPedidoAtual.produto = produto;
@@ -83,8 +94,11 @@ module.exports = class Processor {
 			return mensagem.getValoresProduto();
 		}
 	}
+	/*
+	@TODO!!!!
+	Tratar quando não há acompanhamentos
+	*/
 
-	
 	exibirAcompanhamentos = (msg,acompanhamentoAtual) =>{
 		const opcao = Number(msg)-1;
 		if (msg==="0") {
