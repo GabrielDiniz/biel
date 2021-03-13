@@ -16,7 +16,7 @@ module.exports =class Mensagem {
 			let bkey = "{"+key+"}";
 			string = string.replace(bkey,this.replaces[key]);
 		}
-		return string;
+		return "\n\n\n"+string+"\n\n\n";
 	}
 	getMensagemPane = () =>{
 		return this.printf(menu.getMensagemPane());

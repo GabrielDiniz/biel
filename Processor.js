@@ -95,6 +95,9 @@ module.exports = class Processor {
 			return mensagem.getOpcoesCategorias();
 		}
 		if (acompanhamentoAtual === 0) {
+			console.log(acompanhamentoAtual+"####");
+		console.log(this.itemPedidoAtual.acompanhamentoAtual+"####");
+
 			if(msg === "V"){
 				this.statusConversa = "exibe_menu_categoria";
 				return mensagem.getOpcoesProdutos();
@@ -123,12 +126,19 @@ module.exports = class Processor {
 			 @TODO !!!!
 			 tratamentos da opção escolhida de acompanhamentos
 			*/
+		console.log(acompanhamentoAtual+"//////");
+		console.log(this.itemPedidoAtual.acompanhamentoAtual+"//////");
 
 			if(msg === "V"){
 				this.itemPedidoAtual.acompanhamentoAtual--;
-				mensagem.replaces.valor_produto_nome = menu.getValorProduto(this.itemPedidoAtual).nome;
-				this.statusConversa = "exibir_acompanhamentos";
-				return mensagem.getAcompanhamentos();
+				if (this.itemPedidoAtual.acompanhamentoAtual < 0) {
+					this.statusConversa = "exibe_menu_categoria";
+					return mensagem.getOpcoesProdutos();
+				}else{
+					mensagem.replaces.nome_acompanhamento = menu.getAcompanhamento(this.itemPedidoAtual).nome;
+					this.statusConversa = "exibir_acompanhamentos";
+					return mensagem.getAcompanhamentos();
+				}
 			}
 
 			this.itemPedidoAtual.acompanhamentos[this.itemPedidoAtual.acompanhamentoAtual]=opcao;
