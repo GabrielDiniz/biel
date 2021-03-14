@@ -61,7 +61,11 @@ module.exports = class Menu{
 		return this.content.categorias_menu[pedido.categoria].itens[pedido.produto].valores[pedido.valorProduto];
 	}
 	getQtdAcompanhamentosProduto = (pedido) => {
-		return this.content.categorias_menu[pedido.categoria].acompanhamentos.length;
+		if (this.content.categorias_menu[pedido.categoria].acompanhamentos != undefined) {
+			return this.content.categorias_menu[pedido.categoria].acompanhamentos.length;
+		}else{
+			return 0;
+		}
 	}
 	getAcompanhamento = (pedido) =>{
 		return this.content.categorias_menu[pedido.categoria].acompanhamentos[pedido.acompanhamentoAtual];
