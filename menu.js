@@ -39,6 +39,12 @@ module.exports = class Menu{
 		return ret;	
 	}
 
+	getLabelExtras = (pedido) =>{
+		
+		return this.content.categorias_menu[pedido.categoria].itens[pedido.produto].extras
+		
+	}
+
 	getReplaces = () => {
 		return this.content.replaces;
 	}
@@ -92,5 +98,7 @@ module.exports = class Menu{
 	getAcompanhamentos = () =>{
 		return this.content.acompanhamentos_produto;
 	}
-
+	getExtras =()=>{
+		return this.content.extras;
+	}
 }

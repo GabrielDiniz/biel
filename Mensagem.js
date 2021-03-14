@@ -7,6 +7,7 @@ module.exports =class Mensagem {
 			voltar_menu_principal:"\n\n*0* - {voltar_menu_principal}\n",
 			voltar_menu_categorias:"\n\n*V* - {voltar_menu_categorias}\n",
 			voltar_item:"\n\n*V* - {voltar_item}\n",
+			sem_extras:"\n\n*N* - {sem_extras}"
 		}
 	}
 
@@ -45,7 +46,7 @@ module.exports =class Mensagem {
 	}
 
 	getExtras = () => {
-		return this.printf("extras");
+		return this.printf(this.menu.getExtras()+this.navegacao.sem_extras+this.navegacao.voltar_item+this.navegacao.voltar_menu_principal);
 	}
 
 	getListagemCategorias = () =>{
@@ -82,5 +83,14 @@ module.exports =class Mensagem {
 			listaAcompanhamentos += "*"+(key+1)+"* - *"+acompanhamento.nome+"* _*R$ "+(this.formatNumber(acompanhamento.valor,2))+"*_\n\n";
 		});
 		return listaAcompanhamentos;
+	}
+
+	getListagemExtras = (pedido) =>{
+		const valores = this.menu.getLabelExtras(pedido);
+		let listaValores="";
+		valores.forEach((valor,key)=>{
+			listaValores += "*"+(key+1)+"* - *"+valor.nome+"* _*R$ "+(this.formatNumber(valor.valor,2))+"*_\n\n";
+		});
+		return listaValores;
 	}
 }

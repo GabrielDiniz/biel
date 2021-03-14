@@ -97,6 +97,9 @@ module.exports = class Processor {
 	Caso nao houver opções de valores pula para exibir os acompanhamentos disponiveis e;
 	Caso nao houver acompanhamentos exbibe as opções extras e;
 	Caso nao hover opções extras mostra o resumo do pedido ate entao;
+	*/
+
+	/******
 	@TODO!!!!
 	Tratar quando não há opções extras
 	*/
@@ -122,7 +125,9 @@ module.exports = class Processor {
 					return this.mensagem.getAcompanhamentos();
 				}else{ //caso nao possua pula para as opções extras
 					this.statusConversa = "exibir_extras";
-					return this.mensagem.exibirExtras();
+					this.itemPedidoAtual.extras=[];
+					this.mensagem.replaces.extras = this.mensagem.getListagemExtras(this.itemPedidoAtual);
+					return this.mensagem.getExtras();
 				}
 			}
 			this.statusConversa="exibir_valores_produto";
@@ -131,11 +136,17 @@ module.exports = class Processor {
 			return this.mensagem.getValoresProduto();
 		}
 	}
+
+
+
+
 	/**
 	Registra opção de valor escolhida e;
 	Exibe os acompanhamentos disponiveis e;
 	Caso nao houver acompanhamentos exbibe as opções extras e;
 	Caso nao hover opções extras mostra o resumo do pedido ate entao;
+	*/
+	/****
 	@TODO!!!!
 	Tratar quando não há opções extras
 	*/
@@ -169,6 +180,8 @@ module.exports = class Processor {
 					return this.mensagem.getAcompanhamentos();
 				}else{
 					this.statusConversa = "exibir_extras";
+					this.itemPedidoAtual.extras=[];
+					this.mensagem.replaces.extras = this.mensagem.getListagemExtras(this.itemPedidoAtual);
 					return this.mensagem.getExtras();
 				}
 			}
@@ -195,6 +208,8 @@ module.exports = class Processor {
 				this.itemPedidoAtual.acompanhamentoAtual=acompanhamentoAtual; //controle de quantas opções de acompanhamento ja foram escolhidas
 				if (this.menu.getAcompanhamento(this.itemPedidoAtual)===undefined) { //se acabaram as opções de escolha, vai pras opções extras
 					this.statusConversa = "exibir_extras";
+					this.itemPedidoAtual.extras=[];
+					this.mensagem.replaces.extras = this.mensagem.getListagemExtras(this.itemPedidoAtual);
 					return this.mensagem.getExtras();
 				}else{//caso ainda tenham acompanhamentos a se escolhidos
 					this.mensagem.replaces.nome_acompanhamento = this.menu.getAcompanhamento(this.itemPedidoAtual).nome;
@@ -216,11 +231,18 @@ module.exports = class Processor {
 		@TODO !!! 
 		tratar eventualidade do item atual nao possuir acompanhamento na etapa anterior
 		*/
-		return "Extras!!!!!";
+		const opcao = Number(msg)-1;
+		if (msg==="0") { //voltar ao inicio
+			this.reiniciarPedidoAtual();
+			return this.mensagem.getOpcoesCategorias();
+		}
 	}
-
+	/**
+	se tudo der errado....
+	*/
 	default = (msg) =>{
 		this.statusConversa="apresentar"
+		this.reiniciarPedidoAtual();
 		return this.mensagem.getMensagemPane();
 	}
 
