@@ -1,6 +1,7 @@
 module.exports = class Menu{
 	constructor(file){
-		this.content = require(file);
+		let json = require(file);
+		this.content = JSON.parse(JSON.stringify(json));
 	}
 
 	getLabelCategorias = () =>{

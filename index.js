@@ -43,9 +43,9 @@ client.on('ready', () => {
 
 
 client.on('message', async msg => {
-    console.log('MESSAGE RECEIVED', msg);
-    let proc = queue.getItem(msg.id.remote);
-    let resp = proc.processa(msg.body).then((resp)=>{
+    console.log('MESSAGE RECEIVED FROM', msg.from);
+    let proc = queue.getItem(msg.from);
+    let resp = await proc.processa(msg.body).then(async (resp)=>{
         if(resp instanceof Array){
             resp.forEach((m)=>{
                 msg.reply(m);
@@ -53,6 +53,7 @@ client.on('message', async msg => {
         }else{
             msg.reply(resp);
         }
+       
     });
 });
 

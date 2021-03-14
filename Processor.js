@@ -1,23 +1,18 @@
-const Menu = require("./Menu");
-const menu = new Menu("./Menu.json");
-const Mensagem = require("./Mensagem");
-var mensagem;
 module.exports = class Processor {
-	constructor(){
+	constructor(id){
+
+		const Menu = require("./Menu");
+		this.menu = new Menu("./Menu.json");
+		const Mensagem = require("./Mensagem");
+		this.mensagem = new Mensagem(id);
 		this.pedido={};
 		this.statusConversa = "inicio";
 		this.itemPedidoAtual = {};
-		mensagem = new Mensagem();
 		
-		//console.log(this.menu);
-
-	}
 	
-	/*
-	@TODO!!!
-	1 - Montar exiobição dos itens do menu
-	2 - verificar tratamento de concocrrencia de varias conversas
-	*/
+	}
+
+	
 
 	processa = async (msg) => {
 		switch(this.statusConversa){
@@ -53,27 +48,27 @@ module.exports = class Processor {
 
 	apresentar = (msg) =>{
 		this.statusConversa="apresentar"
-		return mensagem.getApresentacao();
+		return this.mensagem.getApresentacao();
 	}
 
 	exibirMenu = (msg) =>{
 		this.pedido.nome_cliente = msg;
-		mensagem.replaces.nome_cliente = msg;
-		mensagem.replaces.categorias = mensagem.getListagemCategorias();
+		this.mensagem.replaces.nome_cliente = msg;
+		this.mensagem.replaces.categorias = this.mensagem.getListagemCategorias();
 		this.statusConversa="exibir_menu";
-		return mensagem.getOpcoesCategorias();
+		return this.mensagem.getOpcoesCategorias();
 	}
 
 	exibeMenuCategoria = (msg) =>{
 		const categoria = Number(msg)-1;
 		this.itemPedidoAtual.categoria = categoria;
-		if (menu.getCategoria(this.itemPedidoAtual)===undefined) {
-			return [mensagem.getItemInexistente(), mensagem.getOpcoesCategorias()];
+		if (this.menu.getCategoria(this.itemPedidoAtual)===undefined) {
+			return [this.mensagem.getItemInexistente(), this.mensagem.getOpcoesCategorias()];
 		}else{
 			this.statusConversa = "exibe_menu_categoria";
-			mensagem.replaces.nome_categoria=menu.getCategoria(this.itemPedidoAtual).nome;
-			mensagem.replaces.produtos=mensagem.getListagemProdutos(this.itemPedidoAtual);
-			return mensagem.getOpcoesProdutos(categoria);
+			this.mensagem.replaces.nome_categoria=this.menu.getCategoria(this.itemPedidoAtual).nome;
+			this.mensagem.replaces.produtos=this.mensagem.getListagemProdutos(this.itemPedidoAtual);
+			return this.mensagem.getOpcoesProdutos(categoria);
 		}
 	}
 
@@ -88,14 +83,24 @@ module.exports = class Processor {
 		this.itemPedidoAtual.produto = produto;
 		if (msg==="0") {
 			this.reiniciarPedidoAtual();
-			return mensagem.getOpcoesCategorias();
-		}else if (menu.getProduto(this.itemPedidoAtual)===undefined) {
-			return [mensagem.getItemInexistente(), mensagem.getOpcoesProdutos()];
+			return this.mensagem.getOpcoesCategorias();
+		}else if (this.menu.getProduto(this.itemPedidoAtual)===undefined) {
+			return [this.mensagem.getItemInexistente(), this.mensagem.getOpcoesProdutos()];
 		}else{
+			if (this.menu.getProduto(this.itemPedidoAtual).valores.length==1) {
+				this.itemPedidoAtual.valorProduto = 0;
+				this.mensagem.replaces.valor_produto_nome = this.menu.getValorProduto(this.itemPedidoAtual).nome;
+				this.itemPedidoAtual.acompanhamentos=[];
+				this.itemPedidoAtual.acompanhamentoAtual=0;
+				this.mensagem.replaces.nome_acompanhamento = this.menu.getAcompanhamento(this.itemPedidoAtual).nome;
+				this.mensagem.replaces.acompanhamentos_produto = this.mensagem.getListagemAcompanhamentos(this.itemPedidoAtual);
+				this.statusConversa = "exibir_acompanhamentos";
+				return this.mensagem.getAcompanhamentos();
+			}
 			this.statusConversa="exibir_valores_produto";
-			mensagem.replaces.nome_produto = menu.getProduto(this.itemPedidoAtual).nome;
-			mensagem.replaces.valores_produto = mensagem.getListagemValoresProdutos(this.itemPedidoAtual);
-			return mensagem.getValoresProduto();
+			this.mensagem.replaces.nome_produto = this.menu.getProduto(this.itemPedidoAtual).nome;
+			this.mensagem.replaces.valores_produto = this.mensagem.getListagemValoresProdutos(this.itemPedidoAtual);
+			return this.mensagem.getValoresProduto();
 		}
 	}
 	/*
@@ -107,33 +112,32 @@ module.exports = class Processor {
 		const opcao = Number(msg)-1;
 		if (msg==="0") {
 			this.reiniciarPedidoAtual();
-			return mensagem.getOpcoesCategorias();
+			return this.mensagem.getOpcoesCategorias();
 		}
 		if (acompanhamentoAtual === 0) {
-			console.log(acompanhamentoAtual+"####");
-		console.log(this.itemPedidoAtual.acompanhamentoAtual+"####");
+			
 
 			if(msg === "V"){
 				this.statusConversa = "exibe_menu_categoria";
-				return mensagem.getOpcoesProdutos();
+				return this.mensagem.getOpcoesProdutos();
 			}
 			this.itemPedidoAtual.acompanhamentos=[];
 			this.itemPedidoAtual.acompanhamentoAtual=0;
 			this.itemPedidoAtual.valorProduto = opcao;
-			mensagem.replaces.nome_acompanhamento = menu.getAcompanhamento(this.itemPedidoAtual).nome;
-			mensagem.replaces.acompanhamentos_produto = mensagem.getListagemAcompanhamentos(this.itemPedidoAtual);
+			this.mensagem.replaces.nome_acompanhamento = this.menu.getAcompanhamento(this.itemPedidoAtual).nome;
+			this.mensagem.replaces.acompanhamentos_produto = this.mensagem.getListagemAcompanhamentos(this.itemPedidoAtual);
 
-			if (menu.getValorProduto(this.itemPedidoAtual)===undefined) {
-				return [mensagem.getItemInexistente(), mensagem.getValoresProduto()];
+			if (this.menu.getValorProduto(this.itemPedidoAtual)===undefined) {
+				return [this.mensagem.getItemInexistente(), this.mensagem.getValoresProduto()];
 			}else {
-				if (menu.getQtdAcompanhamentosProduto(this.itemPedidoAtual) > 0) {
-					mensagem.replaces.valor_produto_nome = menu.getValorProduto(this.itemPedidoAtual).nome;
+				if (this.menu.getQtdAcompanhamentosProduto(this.itemPedidoAtual) > 0) {
+					this.mensagem.replaces.valor_produto_nome = this.menu.getValorProduto(this.itemPedidoAtual).nome;
 					
 					this.statusConversa = "exibir_acompanhamentos";
-					return mensagem.getAcompanhamentos();
+					return this.mensagem.getAcompanhamentos();
 				}else{
 					this.statusConversa = "exibir_extras";
-					return mensagem.exibirExtras();
+					return this.mensagem.exibirExtras();
 				}
 			}
 		}else{
@@ -141,31 +145,31 @@ module.exports = class Processor {
 				this.itemPedidoAtual.acompanhamentoAtual--;
 				if (this.itemPedidoAtual.acompanhamentoAtual < 0) {
 					this.statusConversa = "exibe_menu_categoria";
-					return mensagem.getOpcoesProdutos();
+					return this.mensagem.getOpcoesProdutos();
 				}else{
-					mensagem.replaces.nome_acompanhamento = menu.getAcompanhamento(this.itemPedidoAtual).nome;
-					mensagem.replaces.acompanhamentos_produto = mensagem.getListagemAcompanhamentos(this.itemPedidoAtual);
+					this.mensagem.replaces.nome_acompanhamento = this.menu.getAcompanhamento(this.itemPedidoAtual).nome;
+					this.mensagem.replaces.acompanhamentos_produto = this.mensagem.getListagemAcompanhamentos(this.itemPedidoAtual);
 					this.statusConversa = "exibir_acompanhamentos";
-					return mensagem.getAcompanhamentos();
+					return this.mensagem.getAcompanhamentos();
 				}
 			}
 
 			this.itemPedidoAtual.acompanhamentos[this.itemPedidoAtual.acompanhamentoAtual]=opcao;
 			
-			if (menu.getAcompanhamentoProduto(this.itemPedidoAtual) === undefined) {
+			if (this.menu.getAcompanhamentoProduto(this.itemPedidoAtual) === undefined) {
 				this.itemPedidoAtual.acompanhamentoAtual--;
-				return [mensagem.getItemInexistente(),mensagem.getAcompanhamentos()];
+				return [this.mensagem.getItemInexistente(),this.mensagem.getAcompanhamentos()];
 			}else{
 				this.itemPedidoAtual.acompanhamentoAtual=acompanhamentoAtual;
-				if (menu.getAcompanhamento(this.itemPedidoAtual)===undefined) {
+				if (this.menu.getAcompanhamento(this.itemPedidoAtual)===undefined) {
 					this.statusConversa = "exibir_extras";
-					return mensagem.getExtras();
+					return this.mensagem.getExtras();
 				}else{
-					mensagem.replaces.nome_acompanhamento = menu.getAcompanhamento(this.itemPedidoAtual).nome;
-					mensagem.replaces.acompanhamentos_produto = mensagem.getListagemAcompanhamentos(this.itemPedidoAtual);
+					this.mensagem.replaces.nome_acompanhamento = this.menu.getAcompanhamento(this.itemPedidoAtual).nome;
+					this.mensagem.replaces.acompanhamentos_produto = this.mensagem.getListagemAcompanhamentos(this.itemPedidoAtual);
 
 					this.statusConversa = "exibir_acompanhamentos";
-					return mensagem.getAcompanhamentos();
+					return this.mensagem.getAcompanhamentos();
 				}
 			}
 			
@@ -185,7 +189,7 @@ module.exports = class Processor {
 
 	default = (msg) =>{
 		this.statusConversa="apresentar"
-		return mensagem.getMensagemPane();
+		return this.mensagem.getMensagemPane();
 	}
 
 

@@ -5,8 +5,9 @@ module.exports = class Queue {
 	}
 
 	getItem = (id) =>{
+
 		if (this.queue[id] == undefined) {
-			this.queue[id] = new Processor();
+			this.queue[id] = new Processor(id);
 		}
 		return this.queue[id];
 
