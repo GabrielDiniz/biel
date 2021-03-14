@@ -127,4 +127,7 @@ confugurações de mensagens
 	getExtras =()=>{
 		return this.content.extras;
 	}
+	getRemoverItem = ()=>{
+		return this.content.remover_item;	
+	}
 }

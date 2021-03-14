@@ -65,7 +65,7 @@ formatação de shchema de mensagens e navegação
 /**
 monta forma textual dos menus de opção
 */
-	getListagemPedido = (pedido) => {
+	getListagemPedido = (pedido,removerItem=false) => {
 		let listagem = "";
 		let total=0;
 		pedido.forEach((item,key)=>{
@@ -87,33 +87,36 @@ monta forma textual dos menus de opção
 			
 			totalItem+=this.menu.getValorProduto(item).valor;
 			
-			item.acompanhamentos.forEach((value,key)=>{
-				item.acompanhamentoAtual = key;
-				listagem+="\t+*";
-				listagem+=this.menu.getAcompanhamento(item).nome
-				listagem+="*: ";
-				listagem+=this.menu.getAcompanhamentoProduto(item).nome;
-				listagem+=" _*R$ ";
-				listagem+=this.formatNumber(this.menu.getAcompanhamentoProduto(item).valor);
-				listagem+="_*";
-				listagem+="\n";
+			if (item.acompanhamentos!=undefined) {
+				item.acompanhamentos.forEach((value,key)=>{
+					item.acompanhamentoAtual = key;
+					listagem+="\t+ *";
+					listagem+=this.menu.getAcompanhamento(item).nome
+					listagem+="*: ";
+					listagem+=this.menu.getAcompanhamentoProduto(item).nome;
+					listagem+=" _*R$ ";
+					listagem+=this.formatNumber(this.menu.getAcompanhamentoProduto(item).valor);
+					listagem+="*_";
+					listagem+="\n";
 
-				totalItem+=this.menu.getAcompanhamentoProduto(item).valor;
-			});
+					totalItem+=this.menu.getAcompanhamentoProduto(item).valor;
+				});
+			}
 			listagem+="Extras:\n";
-				
-			item.extras.forEach((value,key)=>{
-				listagem+="\t+_";
-				listagem+=this.menu.getExtrasProduto(item)[value].nome;
-				listagem+="_ ";
-				listagem+="*R$ ";
-				listagem+=this.formatNumber(this.menu.getExtrasProduto(item)[value].valor);
-				listagem+="*";
-				listagem+="\n";
+			if (item.extras != undefined) {
+				item.extras.forEach((value,key)=>{
+					listagem+="\t+ _";
+					listagem+=this.menu.getExtrasProduto(item)[value].nome;
+					listagem+="_ ";
+					listagem+="*R$ ";
+					listagem+=this.formatNumber(this.menu.getExtrasProduto(item)[value].valor);
+					listagem+="*";
+					listagem+="\n";
 
-				totalItem+=this.formatNumber(this.menu.getExtrasProduto(item)[value].valor);
+					totalItem+=this.menu.getExtrasProduto(item)[value].valor;
 
-			});
+				});
+			}	
 			listagem+="\n";
 			listagem+="Valor do item: *R$ ";
 			listagem+=this.formatNumber(totalItem);
@@ -129,8 +132,10 @@ monta forma textual dos menus de opção
 		listagem+="*";
 		listagem+="\n\n";
 		listagem+=this.navegacao.adicionar_mais;
-		listagem+="\n";
-		listagem+=this.navegacao.remover_item;
+		if (!removerItem) {
+			listagem+="\n";
+			listagem+=this.navegacao.remover_item;
+		}
 		listagem+="\n\n";
 		listagem+=this.navegacao.concluir_item;
 		
@@ -156,34 +161,36 @@ monta forma textual dos menus de opção
 		listagem+="\nAcompanha:\n";
 		
 		totalItem+=this.menu.getValorProduto(item).valor;
-		
-		item.acompanhamentos.forEach((value,key)=>{
-			item.acompanhamentoAtual = key;
-			listagem+="\t+*";
-			listagem+=this.menu.getAcompanhamento(item).nome
-			listagem+="*: ";
-			listagem+=this.menu.getAcompanhamentoProduto(item).nome;
-			listagem+=" _*R$ ";
-			listagem+=this.formatNumber(this.menu.getAcompanhamentoProduto(item).valor);
-			listagem+="_*";
-			listagem+="\n";
+		if (item.acompanhamentos!=undefined) {
+			item.acompanhamentos.forEach((value,key)=>{
+				item.acompanhamentoAtual = key;
+				listagem+="\t+ *";
+				listagem+=this.menu.getAcompanhamento(item).nome
+				listagem+="*: ";
+				listagem+=this.menu.getAcompanhamentoProduto(item).nome;
+				listagem+=" _*R$ ";
+				listagem+=this.formatNumber(this.menu.getAcompanhamentoProduto(item).valor);
+				listagem+="*_";
+				listagem+="\n";
 
-			totalItem+=this.menu.getAcompanhamentoProduto(item).valor;
-		});
+				totalItem+=this.menu.getAcompanhamentoProduto(item).valor;
+			});
+		}
 		listagem+="Extras:\n";
-			
-		item.extras.forEach((value,key)=>{
-			listagem+="\t+_";
-			listagem+=this.menu.getExtrasProduto(item)[value].nome;
-			listagem+="_ ";
-			listagem+="*R$ ";
-			listagem+=this.formatNumber(this.menu.getExtrasProduto(item)[value].valor);
-			listagem+="*";
-			listagem+="\n";
+		if (item.extras != undefined) {
+			item.extras.forEach((value,key)=>{
+				listagem+="\t+ _";
+				listagem+=this.menu.getExtrasProduto(item)[value].nome;
+				listagem+="_ ";
+				listagem+="*R$ ";
+				listagem+=this.formatNumber(this.menu.getExtrasProduto(item)[value].valor);
+				listagem+="*";
+				listagem+="\n";
 
-			totalItem+=this.formatNumber(this.menu.getExtrasProduto(item)[value].valor);
+				totalItem+=this.menu.getExtrasProduto(item)[value].valor;
 
-		});
+			});
+		}	
 		listagem+="\n";
 		listagem+="Valor do item: *R$ ";
 		listagem+=this.formatNumber(totalItem);
@@ -199,6 +206,14 @@ monta forma textual dos menus de opção
 		
 
 		return this.printf(listagem);
+	}
+
+	getListagemPedidoRemover = (pedido) =>{
+		let ret ="";
+		ret += this.menu.getRemoverItem();
+		ret += "\n\n";
+		ret += this.getListagemPedido(pedido,true/*removerItem*/);
+		return this.printf(ret);
 	}
 
 	getListagemCategorias = () =>{

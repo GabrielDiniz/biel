@@ -42,6 +42,12 @@ module.exports = class Processor {
 			case "confirmar_item":
 				return this.confirmarItem(msg);
 				break;
+			case "listagem_pedido":
+				return this.listarPedido(msg);
+				break;
+			case "remover_item":
+				return this.listarPedido(msg);
+				break;
 			default:
 				return this.default(msg);
 		}
@@ -180,7 +186,7 @@ module.exports = class Processor {
 					this.statusConversa = "exibir_acompanhamentos";
 					return this.mensagem.getAcompanhamentos();
 				}else{
-					if (this.menu.getExtrasProduto(this.itemPedidoAtual).length > 0) {//se o produto possui extras
+					if (this.menu.getExtrasProduto(this.itemPedidoAtual)!=undefined && this.menu.getExtrasProduto(this.itemPedidoAtual).length > 0) {//se o produto possui extras
 						this.statusConversa = "exibir_extras";
 						this.itemPedidoAtual.extras=[];
 						this.mensagem.replaces.extras = this.mensagem.getListagemExtras(this.itemPedidoAtual);
@@ -213,7 +219,7 @@ module.exports = class Processor {
 			}else{
 				this.itemPedidoAtual.acompanhamentoAtual=acompanhamentoAtual; //controle de quantas opções de acompanhamento ja foram escolhidas
 				if (this.menu.getAcompanhamento(this.itemPedidoAtual)===undefined) { //se acabaram as opções de escolha, vai pras opções extras
-					if (this.menu.getExtrasProduto(this.itemPedidoAtual).length > 0) {//se o produto possui extras
+					if (this.menu.getExtrasProduto(this.itemPedidoAtual)!=undefined && this.menu.getExtrasProduto(this.itemPedidoAtual).length > 0) {//se o produto possui extras
 						this.statusConversa = "exibir_extras";
 						this.itemPedidoAtual.extras=[];
 						this.mensagem.replaces.extras = this.mensagem.getListagemExtras(this.itemPedidoAtual);
@@ -259,7 +265,7 @@ module.exports = class Processor {
 		}else if (this.menu.getExtra(this.itemPedidoAtual) === undefined) {
 			this.itemPedidoAtual.extras.pop();
 			this.mensagem.replaces.extras = this.mensagem.getListagemExtras(this.itemPedidoAtual);
-			return this.mensagem.getExtras(this.itemPedidoAtual);
+			return [this.mensagem.getItemInexistente(),this.mensagem.getExtras(this.itemPedidoAtual)];
 		}else{
 			this.mensagem.replaces.extras = this.mensagem.getListagemExtras(this.itemPedidoAtual);
 			return this.mensagem.getExtras(this.itemPedidoAtual);
@@ -267,7 +273,7 @@ module.exports = class Processor {
 	}
 
 	confirmarItem = (msg) => {
-		if(msg === "D" || msg === "D"){ //descartar produto
+		if(msg === "D" || msg === "d"){ //descartar produto
 			this.reiniciarPedidoAtual();
 			return this.mensagem.getOpcoesCategorias();
 		}else if( msg === "C" || msg === "c" ){ //confirmar produto
@@ -275,13 +281,31 @@ module.exports = class Processor {
 			this.pedido.push(this.itemPedidoAtual);
 			this.reiniciarPedidoAtual();
 			this.statusConversa = "listagem_pedido";
-			return this.mensagem.getListagemProdutos(this.pedido);
+			return this.mensagem.getListagemPedido(this.pedido);
+		}else{
+			return [this.mensagem.getItemInexistente(),this.mensagem.getConfirmacaoItem(this.itemPedidoAtual)];
 		}
 
 	}
 
-	listarPedido = () => {
-		
+	listarPedido = (msg) => {
+		if(msg === "A" || msg === "a"){ //descartar produto
+			this.reiniciarPedidoAtual();
+			return this.mensagem.getOpcoesCategorias();
+		}else if( msg === "R" || msg === "r" ){ //confirmar produto
+			this.statusConversa="remover_item";
+			return this.mensagem.getListagemPedidoRemover(this.pedido);
+		}else if(this.statusConversa=="remover_item"){
+			const opcao = Number(msg)-1;
+			if (this.pedido[opcao]==undefined) {
+				return [this.mensagem.getItemInexistente(),this.mensagem.getListagemPedidoRemover(this.pedido)];
+			}else{
+				this.pedido.splice(opcao,1);
+				return this.mensagem.getListagemPedido(this.pedido);
+			}
+		}else{
+			return [this.mensagem.getItemInexistente(),this.mensagem.getListagemPedido(this.pedido)];
+		}
 	}
 	/**
 	se tudo der errado....
