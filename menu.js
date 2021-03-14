@@ -4,6 +4,10 @@ module.exports = class Menu{
 		this.content = JSON.parse(JSON.stringify(json));
 	}
 
+/**
+retorna os itens do menu formatados para exibição
+*/
+
 	getLabelCategorias = () =>{
 		let ret = [];
 		this.content.categorias_menu.forEach((categoria)=>{
@@ -45,6 +49,11 @@ module.exports = class Menu{
 		
 	}
 
+
+/**
+retorna itens do menu completos
+*/
+
 	getReplaces = () => {
 		return this.content.replaces;
 	}
@@ -79,6 +88,23 @@ module.exports = class Menu{
 	getAcompanhamentoProduto = (pedido) => {
 		return this.content.categorias_menu[pedido.categoria].acompanhamentos[pedido.acompanhamentoAtual].opcoes[pedido.acompanhamentos[pedido.acompanhamentoAtual]];
 	}
+
+	getExtra = (pedido) => {
+		let extra_atual = pedido.extras[pedido.extras.length-1];
+		return this.content.categorias_menu[pedido.categoria].itens[pedido.produto].extras[extra_atual];
+	}
+
+	getExtrasProduto = (pedido) => {
+		
+		return this.content.categorias_menu[pedido.categoria].itens[pedido.produto].extras;
+	}
+
+
+/**
+confugurações de mensagens 
+*/
+
+
 	getMensagemPane = () => {
 		return this.content.mensagem_pane;
 	}

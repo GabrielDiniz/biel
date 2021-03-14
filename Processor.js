@@ -5,7 +5,7 @@ module.exports = class Processor {
 		this.menu = new Menu("./Menu.json");
 		const Mensagem = require("./Mensagem");
 		this.mensagem = new Mensagem(id);
-		this.pedido={};
+		this.pedido=[];
 		this.statusConversa = "inicio";
 		this.itemPedidoAtual = {};
 		
@@ -37,7 +37,11 @@ module.exports = class Processor {
 				return this.exibirAcompanhamentos(msg,this.itemPedidoAtual.acompanhamentoAtual+1);
 				break;
 			case "exibir_extras":
-				return this.exibirExtras(msg,0);
+				return this.exibirExtras(msg);
+				break;
+			case "confirmar_item":
+				return this.confirmarItem(msg);
+				break;
 			default:
 				return this.default(msg);
 		}
@@ -96,12 +100,7 @@ module.exports = class Processor {
 	Caso houver mais de uma opção de valor pra esse produto, lista essas opções, e;
 	Caso nao houver opções de valores pula para exibir os acompanhamentos disponiveis e;
 	Caso nao houver acompanhamentos exbibe as opções extras e;
-	Caso nao hover opções extras mostra o resumo do pedido ate entao;
-	*/
-
-	/******
-	@TODO!!!!
-	Tratar quando não há opções extras
+	Caso nao hover opções extras mostra a confirmacao do item atual;
 	*/
 
 	exibirValoresProduto = (msg) =>{
@@ -124,10 +123,15 @@ module.exports = class Processor {
 					this.statusConversa = "exibir_acompanhamentos";
 					return this.mensagem.getAcompanhamentos();
 				}else{ //caso nao possua pula para as opções extras
-					this.statusConversa = "exibir_extras";
-					this.itemPedidoAtual.extras=[];
-					this.mensagem.replaces.extras = this.mensagem.getListagemExtras(this.itemPedidoAtual);
-					return this.mensagem.getExtras();
+					if (this.menu.getExtrasProduto(this.itemPedidoAtual).length > 0) {//se o produto possui extras
+						this.statusConversa = "exibir_extras";
+						this.itemPedidoAtual.extras=[];
+						this.mensagem.replaces.extras = this.mensagem.getListagemExtras(this.itemPedidoAtual);
+						return this.mensagem.getExtras(this.itemPedidoAtual);
+					}else{//se nao possui extras pula pra confirmacao do item atual
+						this.statusConversa = "confirmar_item";//tratar confirmação de item
+						return this.mensagem.getConfirmacaoItem(this.itemPedidoAtual);
+					}
 				}
 			}
 			this.statusConversa="exibir_valores_produto";
@@ -144,12 +148,9 @@ module.exports = class Processor {
 	Registra opção de valor escolhida e;
 	Exibe os acompanhamentos disponiveis e;
 	Caso nao houver acompanhamentos exbibe as opções extras e;
-	Caso nao hover opções extras mostra o resumo do pedido ate entao;
+	Caso nao hover opções extras mostra a confirmacao do item atual;
 	*/
-	/****
-	@TODO!!!!
-	Tratar quando não há opções extras
-	*/
+	
 
 	exibirAcompanhamentos = (msg,acompanhamentoAtual) =>{
 		const opcao = Number(msg)-1;
@@ -160,7 +161,7 @@ module.exports = class Processor {
 		if (acompanhamentoAtual === 0) {//acabou de decidir o produto e valor (caso houver opções), vai agora decidir os acompanhamentos (se houver)
 			
 
-			if(msg === "V"){ //Voltar para tela anterior
+			if(msg === "V" || msg === "v"){ //Voltar para tela anterior
 				this.statusConversa = "exibe_menu_categoria";
 				return this.mensagem.getOpcoesProdutos();
 			}
@@ -179,14 +180,19 @@ module.exports = class Processor {
 					this.statusConversa = "exibir_acompanhamentos";
 					return this.mensagem.getAcompanhamentos();
 				}else{
-					this.statusConversa = "exibir_extras";
-					this.itemPedidoAtual.extras=[];
-					this.mensagem.replaces.extras = this.mensagem.getListagemExtras(this.itemPedidoAtual);
-					return this.mensagem.getExtras();
+					if (this.menu.getExtrasProduto(this.itemPedidoAtual).length > 0) {//se o produto possui extras
+						this.statusConversa = "exibir_extras";
+						this.itemPedidoAtual.extras=[];
+						this.mensagem.replaces.extras = this.mensagem.getListagemExtras(this.itemPedidoAtual);
+						return this.mensagem.getExtras(this.itemPedidoAtual);
+					}else{//se nao possui extras pula pra confirmacao do item atual
+						this.statusConversa = "confirmar_item";//tratar confirmação de item
+						return this.mensagem.getConfirmacaoItem(this.itemPedidoAtual);
+					}
 				}
 			}
 		}else{ //trata as escolhas de acompanhamento
-			if(msg === "V"){//Voltar para tela anterior
+			if(msg === "V" || msg === "v"){//Voltar para tela anterior
 				this.itemPedidoAtual.acompanhamentoAtual--;
 				if (this.itemPedidoAtual.acompanhamentoAtual < 0) { //se for o primeiro acompanhamento volta pra listagem de produtos
 					this.statusConversa = "exibe_menu_categoria";
@@ -207,10 +213,15 @@ module.exports = class Processor {
 			}else{
 				this.itemPedidoAtual.acompanhamentoAtual=acompanhamentoAtual; //controle de quantas opções de acompanhamento ja foram escolhidas
 				if (this.menu.getAcompanhamento(this.itemPedidoAtual)===undefined) { //se acabaram as opções de escolha, vai pras opções extras
-					this.statusConversa = "exibir_extras";
-					this.itemPedidoAtual.extras=[];
-					this.mensagem.replaces.extras = this.mensagem.getListagemExtras(this.itemPedidoAtual);
-					return this.mensagem.getExtras();
+					if (this.menu.getExtrasProduto(this.itemPedidoAtual).length > 0) {//se o produto possui extras
+						this.statusConversa = "exibir_extras";
+						this.itemPedidoAtual.extras=[];
+						this.mensagem.replaces.extras = this.mensagem.getListagemExtras(this.itemPedidoAtual);
+						return this.mensagem.getExtras(this.itemPedidoAtual);
+					}else{//se nao possui extras pula pra confirmacao do item atual
+						this.statusConversa = "confirmar_item";//tratar confirmação de item
+						return this.mensagem.getConfirmacaoItem(this.itemPedidoAtual);
+					}
 				}else{//caso ainda tenham acompanhamentos a se escolhidos
 					this.mensagem.replaces.nome_acompanhamento = this.menu.getAcompanhamento(this.itemPedidoAtual).nome;
 					this.mensagem.replaces.acompanhamentos_produto = this.mensagem.getListagemAcompanhamentos(this.itemPedidoAtual);
@@ -226,16 +237,51 @@ module.exports = class Processor {
 
 	}
 
-	exibirExtras = (msg,extraAtual) =>{
-		/*
-		@TODO !!! 
-		tratar eventualidade do item atual nao possuir acompanhamento na etapa anterior
-		*/
+	/**
+	Registra opção de item extra escolhida e;
+	Mostra a confirmacao do item atual;
+	*/
+
+	exibirExtras = (msg) =>{
+		
 		const opcao = Number(msg)-1;
+		this.itemPedidoAtual.extras.push(opcao);
 		if (msg==="0") { //voltar ao inicio
 			this.reiniciarPedidoAtual();
 			return this.mensagem.getOpcoesCategorias();
+		}else if(msg === "V" || msg === "v"){ //Voltar para tela anterior
+			this.statusConversa = "exibe_menu_categoria";
+			return this.mensagem.getOpcoesProdutos();
+		}else if(msg === "N" || msg === "n" || msg === "C" || msg === "c" ){
+			this.itemPedidoAtual.extras.pop();//remove a ultima opcao (navegação/confirmacao)
+			this.statusConversa = "confirmar_item";//tratar confirmação de item
+			return this.mensagem.getConfirmacaoItem(this.itemPedidoAtual);
+		}else if (this.menu.getExtra(this.itemPedidoAtual) === undefined) {
+			this.itemPedidoAtual.extras.pop();
+			this.mensagem.replaces.extras = this.mensagem.getListagemExtras(this.itemPedidoAtual);
+			return this.mensagem.getExtras(this.itemPedidoAtual);
+		}else{
+			this.mensagem.replaces.extras = this.mensagem.getListagemExtras(this.itemPedidoAtual);
+			return this.mensagem.getExtras(this.itemPedidoAtual);
 		}
+	}
+
+	confirmarItem = (msg) => {
+		if(msg === "D" || msg === "D"){ //descartar produto
+			this.reiniciarPedidoAtual();
+			return this.mensagem.getOpcoesCategorias();
+		}else if( msg === "C" || msg === "c" ){ //confirmar produto
+
+			this.pedido.push(this.itemPedidoAtual);
+			this.reiniciarPedidoAtual();
+			this.statusConversa = "listagem_pedido";
+			return this.mensagem.getListagemProdutos(this.pedido);
+		}
+
+	}
+
+	listarPedido = () => {
+		
 	}
 	/**
 	se tudo der errado....

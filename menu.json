@@ -759,14 +759,21 @@
 	"voltar_menu_principal": "Voltar ao início",
 	"voltar_menu_categorias": "Voltar a listagem de produtos",
 	"voltar_item":"Voltar ao item anterior",
-	"sem_extras":"Não quero nenhum extra"
+	"sem_extras":"Não quero nenhum extra",
+	"extras_selecionados":"Você ja adiciou esses extras:",
+	"adicionar_mais_extras":"Deseja adicionar mais algum?",
+	"concluir_item":"Concluir",
+	"descartar_produto":"Descartar esse produto",
+	"confirmar_produto":"Confirmar e adicionar item ao carrinho",
+	"adicionar_mais":"Adicionar outro item",
+	"remover_item":"Remover um dos itens"
 },
 "apresentar":"Oi, eu sou Biel, o robô aqui da lanchonete, vou anotar o seu pedido.\nQual é o seu nome?\n",
 "mensagem_pane":"Desculpe, meus parafusos estavam soltos e acabei perdendo alguma coisa que ja conversamos.\nJá consertei tudo aqui, mas  terei que começar nossa conversa do zero.\nComo voce gostaria que eu te chame?",
 "opcoes_categorias":"Então {nome_cliente}, hoje voce está com fome de que?\n{categorias}\nEscolha uma categoria",
 "opcoes_produtos":"Ok {nome_cliente}, vejo que voce gosta de {nome_categoria}...\n Temos essas opções:\n{produtos}\nQual voce escolhe?",
 "valores_produto":"Voce escolheu {nome_produto}.\nQual opção?:\n{valores_produto}",
-"acompanhamentos_produto":"Voce deseja adicionar algum acompanhamento abaixo ao pedido?\nEscolha sua opção de {nome_acompanhamento}\n\n{acompanhamentos_produto}",
+"acompanhamentos_produto":"Voce deseja adicionar algum acompanhamento abaixo ao pedido?\nEscolha sua opção de _*{nome_acompanhamento}*_\n\n{acompanhamentos_produto}",
 "extras":"Deseja adicionar algum item extra?\n Temos essas opções:\n\n{extras}",
 "item_inexistente":"Voce escolheu uma opção inválida, digite uma das opções abaixo:"
 }
