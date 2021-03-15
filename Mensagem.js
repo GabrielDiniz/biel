@@ -12,7 +12,10 @@ module.exports =class Mensagem {
 			adicionar_mais:"*A* - {adicionar_mais}",
 			remover_item:"*R* - {remover_item}",
 			confirmar_produto:"*C* - {confirmar_produto}",
-			descartar_produto:"*D* - {descartar_produto}"
+			descartar_produto:"*D* - {descartar_produto}",
+			pagamento_cartao:"*C* - Cartão de crédito/débito",
+			pagamento_dinheiro:"*D* - Dinheiro",
+			cancelar_tudo:"*C* - {cancelar_tudo}"
 		}
 	}
 
@@ -42,6 +45,7 @@ formatação de shchema de mensagens e navegação
 		return this.printf(this.menu.getOpcoesCategorias());
 	}
 
+
 	getOpcoesProdutos = () =>{
 		return this.printf(this.menu.getOpcoesProdutos()+"\n\n"+this.navegacao.voltar_menu_principal);
 	}
@@ -61,6 +65,29 @@ formatação de shchema de mensagens e navegação
 		}
 	}
 
+	getFormaPagamento = () => {
+		return this.printf(this.menu.getFormaPagamento()+"\n\n"+this.navegacao.pagamento_cartao+"\n"+this.navegacao.pagamento_dinheiro+"\n\n"+this.navegacao.voltar_menu_principal);
+	}
+
+	getEnderecoRua = () =>{
+		return this.printf(this.menu.getEnderecoRua()+"\n\n"+this.navegacao.adicionar_mais+"\n"+this.navegacao.cancelar_tudo);
+	}
+
+	getEnderecoBairro = () =>{
+		return this.printf(this.menu.getEnderecoBairro()+"\n\n"+this.navegacao.adicionar_mais+"\n"+this.navegacao.cancelar_tudo);
+	}
+
+	getEnderecoNumero = () =>{
+		return this.printf(this.menu.getEnderecoNumero()+"\n\n"+this.navegacao.adicionar_mais+"\n"+this.navegacao.cancelar_tudo);
+	}
+
+	getEnderecoComplemento = () =>{
+		return this.printf(this.menu.getEnderecoComplemento()+"\n\n"+this.navegacao.adicionar_mais+"\n"+this.navegacao.cancelar_tudo);
+	}
+
+	getEnderecoReferencia = () =>{
+		return this.printf(this.menu.getEnderecoReferencia()+"\n\n"+this.navegacao.adicionar_mais+"\n"+this.navegacao.cancelar_tudo);
+	}
 
 /**
 monta forma textual dos menus de opção
@@ -123,9 +150,10 @@ monta forma textual dos menus de opção
 			listagem+="*";
 			listagem+="\n";
 			listagem+="\n";
-			total+=totalItem
+			item.totalItem = totalItem;
+			total+=totalItem;
 		});
-
+		pedido.total=total;
 		listagem+="\n";
 		listagem+="Valor total do pedido: *R$ ";
 		listagem+=this.formatNumber(total);
@@ -197,7 +225,7 @@ monta forma textual dos menus de opção
 		listagem+="*";
 		listagem+="\n";
 		listagem+="\n";
-	
+		item.totalItem=totalItem;
 	
 
 		listagem+=this.navegacao.confirmar_produto;

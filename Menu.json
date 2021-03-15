@@ -766,7 +766,8 @@
 	"descartar_produto":"Descartar esse produto",
 	"confirmar_produto":"Confirmar e adicionar item ao carrinho",
 	"adicionar_mais":"Adicionar outro item",
-	"remover_item":"Remover um dos itens"
+	"remover_item":"Remover um dos itens",
+	"cancelar_tudo":"Cancelar tudo e recomeçar pedido"
 },
 "apresentar":"Oi, eu sou Biel, o robô aqui da lanchonete, vou anotar o seu pedido.\nQual é o seu nome?\n",
 "mensagem_pane":"Desculpe, meus parafusos estavam soltos e acabei perdendo alguma coisa que ja conversamos.\nJá consertei tudo aqui, mas  terei que começar nossa conversa do zero.\nComo voce gostaria que eu te chame?",
@@ -776,5 +777,11 @@
 "acompanhamentos_produto":"Voce deseja adicionar algum acompanhamento abaixo ao pedido?\nEscolha sua opção de _*{nome_acompanhamento}*_\n\n{acompanhamentos_produto}",
 "extras":"Deseja adicionar algum item extra?\n Temos essas opções:\n\n{extras}",
 "item_inexistente":"Voce escolheu uma opção inválida, digite uma das opções abaixo:",
-"remover_item":"Digite o numero do item que deseja remover"
+"remover_item":"Digite o numero do item que deseja remover",
+"forma_pagamento":"O valor total do seu pedido foi *R${total_pedido}*\n Qual será a forma de pagamento?",
+"endereco_rua":"Em qual rua voce mora?",
+"endereco_bairro":"Qual bairro?",
+"endereco_numero":"Qual o numero da sua casa/predio?",
+"endereco_comp":"Algum complemento? (nº do apt, bloco e etc.)",
+"endereco_ref":"Algum ponto de referencia para ajudar nosso entregador?"
 }

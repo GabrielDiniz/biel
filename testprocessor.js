@@ -1,4 +1,4 @@
-const Processor = require("./processor");
+const Processor = require("./Processor");
 var readline = require('readline');
 var resp = "";
 

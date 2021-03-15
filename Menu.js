@@ -100,6 +100,7 @@ retorna itens do menu completos
 	}
 
 
+
 /**
 confugurações de mensagens 
 */
@@ -108,19 +109,15 @@ confugurações de mensagens
 	getMensagemPane = () => {
 		return this.content.mensagem_pane;
 	}
-
 	getOpcoesCategorias = () =>{
 		return this.content.opcoes_categorias;
 	}
-
 	getOpcoesProdutos = () =>{
 		return this.content.opcoes_produtos;
 	}
-
 	getValoresProduto = () =>{
 		return this.content.valores_produto;
 	}
-
 	getAcompanhamentos = () =>{
 		return this.content.acompanhamentos_produto;
 	}
@@ -129,5 +126,23 @@ confugurações de mensagens
 	}
 	getRemoverItem = ()=>{
 		return this.content.remover_item;	
+	}
+	getFormaPagamento = () =>{
+		return this.content.forma_pagamento;
+	}
+	getEnderecoRua = () =>{
+		return this.content.endereco_rua;
+	}
+	getEnderecoBairro = () =>{
+		return this.content.endereco_bairro;
+	}
+	getEnderecoNumero = () =>{
+		return this.content.endereco_numero;
+	}
+	getEnderecoComplemento = () =>{
+		return this.content.endereco_comp;
+	}
+	getEnderecoReferencia = () =>{
+		return this.content.endereco_ref;
 	}
 }

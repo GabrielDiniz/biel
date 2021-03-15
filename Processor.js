@@ -48,6 +48,12 @@ module.exports = class Processor {
 			case "remover_item":
 				return this.listarPedido(msg);
 				break;
+			case "forma_pagamento":
+				return this.formaPagamento(msg);
+				break;
+			case "coletar_endereco":
+				return this.coletarEndereco(msg);
+				break;
 			default:
 				return this.default(msg);
 		}
@@ -295,6 +301,10 @@ module.exports = class Processor {
 		}else if( msg === "R" || msg === "r" ){ //confirmar produto
 			this.statusConversa="remover_item";
 			return this.mensagem.getListagemPedidoRemover(this.pedido);
+		}else if( msg === "C" || msg === "c" ){ //concluir pedido
+			this.statusConversa="forma_pagamento";
+			this.mensagem.replaces.toal_pedido=this.pedido.total;
+			return this.mensagem.getFormaPagamento();
 		}else if(this.statusConversa=="remover_item"){
 			const opcao = Number(msg)-1;
 			if (this.pedido[opcao]==undefined) {
@@ -305,6 +315,61 @@ module.exports = class Processor {
 			}
 		}else{
 			return [this.mensagem.getItemInexistente(),this.mensagem.getListagemPedido(this.pedido)];
+		}
+	}
+
+	formaPagamento = (msg) => {
+		if( msg === "C" || msg === "c" ||  msg === "D" || msg === "d" ){
+			this.pedido.forma_pagamento=msg.toUpperCase();
+
+			this.mensagem.replaces.forma_pagamento = (this.pedido.forma_pagamento === "D")?"Dinheiro":"Cartão";
+			this.statusConversa = "coletar_endereco";
+			return this.mensagem.getEnderecoRua();
+		}else{
+			return [this.mensagem.getItemInexistente(),this.mensagem.getFormaPagamento()];
+		}
+	}
+
+	coletarEndereco = (msg) => {
+		if (msg === "A" || msg === "a") {
+			this.reiniciarPedidoAtual();
+			return this.mensagem.getOpcoesCategorias();
+		}else if( msg === "C" || msg === "c" ){
+			this.reiniciarPedidoAtual();
+			this.pedido={};
+			return this.mensagem.getOpcoesCategorias();
+		}else if (this.pedido.rua==undefined) {
+			this.mensagem.replaces.rua = msg;
+			this.pedido.rua = msg;
+			return this.mensagem.getEnderecoBairro();
+		}else if (this.pedido.bairro==undefined) {
+			this.mensagem.replaces.bairro = msg;
+			this.pedido.bairro = msg;
+			return this.mensagem.getEnderecoNumero();
+		}else if (this.pedido.numero==undefined) {
+			this.mensagem.replaces.numero = msg;
+			this.pedido.numero = msg;
+			return this.mensagem.getEnderecoComplemento();
+		}else if (this.pedido.comp==undefined) {
+			this.mensagem.replaces.comp = msg;
+			this.pedido.comp = msg;
+			return this.mensagem.getEnderecoReferencia();
+		}else if (this.pedido.ref==undefined) {
+			this.mensagem.replaces.ref = msg;
+			this.pedido.ref = msg;
+			return this.mensagem.getConfirmacaoEndereco();
+		}else{
+			if( msg === "C" || msg === "c" ){
+				this.statusConversa = "confirmacao_geral";
+				return this.mensagem.getConfirmacaoGeral()
+			}else if (msg === "A" || msg === "a") {
+				this.pedido.rua=undefined;
+				this.pedido.bairro=undefined;
+				this.pedido.numero=undefined;
+				this.pedido.comp=undefined;
+				this.pedido.ref=undefined;
+				return this.mensagem.getEnderecoRua(); 
+			}
 		}
 	}
 	/**
