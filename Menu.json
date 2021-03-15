@@ -1,787 +1,779 @@
 {
-	"categorias_menu":[
-		{
-			"nome":"Hamburgers",
-			"itens":[
-				{
-					"nome":"Caratinga",
-					"descricao":"blend artesanal 100g, queijo mussarela, bacon, presunto, frango, ovo, alface e tomate",
-					"valores":[
-						{
-							"nome":"",
-							"valor":17.69
-						}
-					],
-					"extras":[
-						{
-							"nome":"milho e batata",
-							"valor":1
-						},
-						{
-							"nome":"quiejo",
-							"valor":1.5
-						},
-						{
-							"nome":"bacon",
-							"valor":2
-						},
-						{
-							"nome":"farofa de bacon",
-							"valor":2
-						},
-						{
-							"nome":"blend artesanal 100g",
-							"valor":6.5
-						},
-						{
-							"nome":"quejo mussarela",
-							"valor":1
-						},
-						{
-							"nome":"queijo chedar",
-							"valor":1
-						},
-						{
-							"nome":"queijo chedar cremoso",
-							"valor":1.5
-						},
-						{
-							"nome":"presunto",
-							"valor":1
-						}
-					]
-				},
-				{
-					"nome":"Ubaporanga",
-					"descricao":"blend artesanal 100g, queijo mussarela, bacon, alface e tomate",
-					"valores":[
-						{
-							"nome":"",
-							"valor":14.69
-						}
-					],
-					"extras":[
-						{
-							"nome":"milho e batata",
-							"valor":1
-						},
-						{
-							"nome":"quiejo",
-							"valor":1.5
-						},
-						{
-							"nome":"bacon",
-							"valor":2
-						},
-						{
-							"nome":"farofa de bacon",
-							"valor":2
-						},
-						{
-							"nome":"blend artesanal 100g",
-							"valor":6.5
-						},
-						{
-							"nome":"quejo mussarela",
-							"valor":1
-						},
-						{
-							"nome":"queijo chedar",
-							"valor":1
-						},
-						{
-							"nome":"queijo chedar cremoso",
-							"valor":1.5
-						},
-						{
-							"nome":"presunto",
-							"valor":1
-						}
-					]
-				},
-				{
-					"nome":"Inhapim",
-					"descricao":"blend artesanal 100g, queijo mussarela em dobro, frango desfiado, alface e tomate",
-					"valores":[
-						{
-							"nome":"",
-							"valor":15.69
-						}
-					],
-					"extras":[
-						{
-							"nome":"milho e batata",
-							"valor":1
-						},
-						{
-							"nome":"quiejo",
-							"valor":1.5
-						},
-						{
-							"nome":"bacon",
-							"valor":2
-						},
-						{
-							"nome":"farofa de bacon",
-							"valor":2
-						},
-						{
-							"nome":"blend artesanal 100g",
-							"valor":6.5
-						},
-						{
-							"nome":"quejo mussarela",
-							"valor":1
-						},
-						{
-							"nome":"queijo chedar",
-							"valor":1
-						},
-						{
-							"nome":"queijo chedar cremoso",
-							"valor":1.5
-						},
-						{
-							"nome":"presunto",
-							"valor":1
-						}
-					]
-				},
-				{
-					"nome":"Bom jesus do galho",
-					"descricao":"blend artesanal 100g, queijo mussarela, queijo gorgonzola, chedar e cebola caramelizada",
-					"valores":[
-						{
-							"nome":"",
-							"valor":16.69
-						}
-					],
-					"extras":[
-						{
-							"nome":"milho e batata",
-							"valor":1
-						},
-						{
-							"nome":"quiejo",
-							"valor":1.5
-						},
-						{
-							"nome":"bacon",
-							"valor":2
-						},
-						{
-							"nome":"farofa de bacon",
-							"valor":2
-						},
-						{
-							"nome":"blend artesanal 100g",
-							"valor":6.5
-						},
-						{
-							"nome":"quejo mussarela",
-							"valor":1
-						},
-						{
-							"nome":"queijo chedar",
-							"valor":1
-						},
-						{
-							"nome":"queijo chedar cremoso",
-							"valor":1.5
-						},
-						{
-							"nome":"presunto",
-							"valor":1
-						}
-					]
-				},
-				{
-					"nome":"Santa Rita",
-					"descricao":"blend artesanal 100g, bacon, presunto, alface e tomate",
-					"valores":[
-						{
-							"nome":"",
-							"valor":12.99
-						}
-					],
-					"extras":[
-						{
-							"nome":"milho e batata",
-							"valor":1
-						},
-						{
-							"nome":"quiejo",
-							"valor":1.5
-						},
-						{
-							"nome":"bacon",
-							"valor":2
-						},
-						{
-							"nome":"farofa de bacon",
-							"valor":2
-						},
-						{
-							"nome":"blend artesanal 100g",
-							"valor":6.5
-						},
-						{
-							"nome":"quejo mussarela",
-							"valor":1
-						},
-						{
-							"nome":"queijo chedar",
-							"valor":1
-						},
-						{
-							"nome":"queijo chedar cremoso",
-							"valor":1.5
-						},
-						{
-							"nome":"presunto",
-							"valor":1
-						}
-					]
-				},
-				{
-					"nome":"Entre Folhas",
-					"descricao":"blend artesanal 100g, queijo mussarela, farofa de bacon, alface e tomate",
-					"valores":[
-						{
-							"nome":"",
-							"valor":12.39
-						}
-					],
-					"extras":[
-						{
-							"nome":"milho e batata",
-							"valor":1
-						},
-						{
-							"nome":"quiejo",
-							"valor":1.5
-						},
-						{
-							"nome":"bacon",
-							"valor":2
-						},
-						{
-							"nome":"farofa de bacon",
-							"valor":2
-						},
-						{
-							"nome":"blend artesanal 100g",
-							"valor":6.5
-						},
-						{
-							"nome":"quejo mussarela",
-							"valor":1
-						},
-						{
-							"nome":"queijo chedar",
-							"valor":1
-						},
-						{
-							"nome":"queijo chedar cremoso",
-							"valor":1.5
-						},
-						{
-							"nome":"presunto",
-							"valor":1
-						}
-					]
-				}
-			],
-
-"acompanhamentos":[
-	{
-		"nome":"Molho especial",
-		"opcoes":[
-			{
-				"nome":"Maionese temperada",
-				"valor":0
-			},
-			{
-				"nome":"Molho de alho",
-				"valor":0
-			},
-			{
-				"nome":"Molho tártaro",
-				"valor":0
-			},
-			{
-				"nome":"Molho gorgonzola",
-				"valor":0
-			},
-			{
-				"nome":"Molho de azeitona preta",
-				"valor":0
-			},
-			{
-				"nome":"Sem molho",
-				"valor":0
-			}
-		]
-	},
-	{
-		"nome":"Fritas",
-		"opcoes":[
-			{
-				"nome":"Não acompanha fritas",
-				"valor":0
-			},
-			{
-				"nome":"Bata rustica",
-				"valor":5
-			},
-			{
-				"nome":"Batata Canoa",
-				"valor":5
-			},
-			{
-				"nome":"Batata chips",
-				"valor":5
-			}
-		]
-	}
-]
-
-
-},
-{
-	"nome":"Pizzas",
-	"itens":[
-		{
-			"nome":"AMERICANA",
-			"descricao":"MOLHO DE TOMATE, MUSSARELA, BACON, CALABRESA, OVOS E CEBOLA",
-			"valores":[
-				{
-					"nome":"Broto (4 fatias)",
-					"valor":12.69
-				},
-				{
-					"nome":"Média (6 fatias)",
-					"valor":18.69
-				},
-				{
-					"nome":"Grande (8 fatias)",
-					"valor":23.69
-				},
-				{
-					"nome":"Família (12 fatias)",
-					"valor":30.69
-				}
-			]
-
-		},
-		{
-			"nome":"APRESUNTADA",
-			"descricao":"MOLHO DE TOMATE, PRESUNTO E MUSSARELA",
-			"valores":[
-				{
-					"nome":"Broto (4 fatias)",
-					"valor":12.69
-				},
-				{
-					"nome":"Média (6 fatias)",
-					"valor":18.69
-				},
-				{
-					"nome":"Grande (8 fatias)",
-					"valor":23.69
-				},
-				{
-					"nome":"Família (12 fatias)",
-					"valor":30.69
-				}
-			],
-			"extras":[
-
-				{
-					"nome":"mussarela",
-					"valor":1.5
-				},
-				{
-					"nome":"bacon",
-					"valor":2
-				},
-				{
-					"nome":"farofa de bacon",
-					"valor":2
-				},
-				{
-					"nome":"queijo chedar",
-					"valor":1
-				},
-				{
-					"nome":"queijo chedar cremoso",
-					"valor":1.5
-				},
-				{
-					"nome":"presunto",
-					"valor":1
-				},
-				{
-					"nome":"cebola",
-					"valor":0
-				},
-				{
-					"nome":"pimentao",
-					"valor":0
-				}
-			]
-
-		},
-		{
-			"nome":"CROCANTE",
-			"descricao":"MOLHO DE TOMATE, MUSSARELA (2 CAMADAS), CATUPIRY, BATATA PALHA (DEPOIS DE ASSADA)",
-			"valores":[
-				{
-					"nome":"Broto (4 fatias)",
-					"valor":12.69
-				},
-				{
-					"nome":"Média (6 fatias)",
-					"valor":18.69
-				},
-				{
-					"nome":"Grande (8 fatias)",
-					"valor":23.69
-				},
-				{
-					"nome":"Família (12 fatias)",
-					"valor":30.69
-				}
-			],
-			"extras":[
-
-				{
-					"nome":"mussarela",
-					"valor":1.5
-				},
-				{
-					"nome":"bacon",
-					"valor":2
-				},
-				{
-					"nome":"farofa de bacon",
-					"valor":2
-				},
-				{
-					"nome":"queijo chedar",
-					"valor":1
-				},
-				{
-					"nome":"queijo chedar cremoso",
-					"valor":1.5
-				},
-				{
-					"nome":"presunto",
-					"valor":1
-				},
-				{
-					"nome":"cebola",
-					"valor":0
-				},
-				{
-					"nome":"pimentao",
-					"valor":0
-				}
-			]
-
-		},
-		{
-			"nome":"MILHO",
-			"descricao":"MOLHO DE TOMATE, MUSSARELA E MILHO",
-			"valores":[
-				{
-					"nome":"Broto (4 fatias)",
-					"valor":12.69
-				},
-				{
-					"nome":"Média (6 fatias)",
-					"valor":18.69
-				},
-				{
-					"nome":"Grande (8 fatias)",
-					"valor":23.69
-				},
-				{
-					"nome":"Família (12 fatias)",
-					"valor":30.69
-				}
-			],
-			"extras":[
-
-				{
-					"nome":"mussarela",
-					"valor":1.5
-				},
-				{
-					"nome":"bacon",
-					"valor":2
-				},
-				{
-					"nome":"farofa de bacon",
-					"valor":2
-				},
-				{
-					"nome":"queijo chedar",
-					"valor":1
-				},
-				{
-					"nome":"queijo chedar cremoso",
-					"valor":1.5
-				},
-				{
-					"nome":"presunto",
-					"valor":1
-				},
-				{
-					"nome":"cebola",
-					"valor":0
-				},
-				{
-					"nome":"pimentao",
-					"valor":0
-				}
-			]
-
-		},
-		{
-			"nome":"BACON",
-			"descricao":"MOLHO DE TOMATE, MUSSARELA E BACON",
-			"valores":[
-				{
-					"nome":"Broto (4 fatias)",
-					"valor":12.69
-				},
-				{
-					"nome":"Média (6 fatias)",
-					"valor":18.69
-				},
-				{
-					"nome":"Grande (8 fatias)",
-					"valor":23.69
-				},
-				{
-					"nome":"Família (12 fatias)",
-					"valor":30.69
-				}
-			],
-			"extras":[
-
-				{
-					"nome":"mussarela",
-					"valor":1.5
-				},
-				{
-					"nome":"bacon",
-					"valor":2
-				},
-				{
-					"nome":"farofa de bacon",
-					"valor":2
-				},
-				{
-					"nome":"queijo chedar",
-					"valor":1
-				},
-				{
-					"nome":"queijo chedar cremoso",
-					"valor":1.5
-				},
-				{
-					"nome":"presunto",
-					"valor":1
-				},
-				{
-					"nome":"cebola",
-					"valor":0
-				},
-				{
-					"nome":"pimentao",
-					"valor":0
-				}
-			]
-
-		},
-		{
-			"nome":"FRANGO C/ CATUPIRY",
-			"descricao":"MOLHO DE TOMATE, MUSSARELA, FRANGO DESFIADO AO MOLHO DE CATUPIRY",
-			"valores":[
-				{
-					"nome":"Broto (4 fatias)",
-					"valor":12.69
-				},
-				{
-					"nome":"Média (6 fatias)",
-					"valor":18.69
-				},
-				{
-					"nome":"Grande (8 fatias)",
-					"valor":23.69
-				},
-				{
-					"nome":"Família (12 fatias)",
-					"valor":30.69
-				}
-			],
-			"extras":[
-
-				{
-					"nome":"mussarela",
-					"valor":1.5
-				},
-				{
-					"nome":"bacon",
-					"valor":2
-				},
-				{
-					"nome":"farofa de bacon",
-					"valor":2
-				},
-				{
-					"nome":"queijo chedar",
-					"valor":1
-				},
-				{
-					"nome":"queijo chedar cremoso",
-					"valor":1.5
-				},
-				{
-					"nome":"presunto",
-					"valor":1
-				},
-				{
-					"nome":"cebola",
-					"valor":0
-				},
-				{
-					"nome":"pimentao",
-					"valor":0
-				}
-			]
-
-		}
-
-	],
-"acompanhamentos":[
-	{
-		"nome":"Borda",
-		"opcoes":[
-			{
-				"nome":"Chedar",
-				"valor":3
-			},
-			{
-				"nome":"Gorgonzola",
-				"valor":4
-			},
-			{
-				"nome":"Catupiry",
-				"valor":3
-			},
-			{
-				"nome":"Sem Borda",
-				"valor":0
-			}
-		]
-	}
-]
-},
-{
-	"nome":"Bebidas",
-	"itens":[
-		{
-			"nome":"Refrigerantes 2L",
-			"descricao":"",
-			"valores":[
-				{
-					"nome":"Coca-cola",
-					"valor":10
-				},
-				{
-					"nome":"Guaraná Antartica",
-					"valor":9
-				},
-				{
-					"nome":"Fanta Laranja",
-					"valor":9
-				}
-			]
-
-		},
-		{
-			"nome":"Refrigerantes 1L",
-			"descricao":"",
-			"valores":[
-				{
-					"nome":"Coca-cola",
-					"valor":7
-				},
-				{
-					"nome":"Guaraná Antartica",
-					"valor":6
-				},
-				{
-					"nome":"Fanta Laranja",
-					"valor":6
-				}
-			]
-
-		},
-		{
-			"nome":"Refrigerantes Lata",
-			"descricao":"",
-			"valores":[
-				{
-					"nome":"Coca-cola",
-					"valor":5
-				},
-				{
-					"nome":"Guaraná Antartica",
-					"valor":4
-				},
-				{
-					"nome":"Fanta Laranja",
-					"valor":4
-				}
-			]
-
-		}
-
-
-	]
-}
-],
-"replaces":{
-	"voltar_menu_principal": "Voltar ao início",
-	"voltar_menu_categorias": "Voltar a listagem de produtos",
-	"voltar_item":"Voltar ao item anterior",
-	"sem_extras":"Não quero nenhum extra",
-	"extras_selecionados":"Você ja adiciou esses extras:",
-	"adicionar_mais_extras":"Deseja adicionar mais algum?",
-	"concluir_item":"Concluir",
-	"descartar_produto":"Descartar esse produto",
-	"confirmar_produto":"Confirmar e adicionar item ao carrinho",
-	"adicionar_mais":"Adicionar outro item",
-	"remover_item":"Remover um dos itens",
-	"cancelar_tudo":"Cancelar tudo e recomeçar pedido"
-},
-"apresentar":"Oi, eu sou Biel, o robô aqui da lanchonete, vou anotar o seu pedido.\nQual é o seu nome?\n",
-"mensagem_pane":"Desculpe, meus parafusos estavam soltos e acabei perdendo alguma coisa que ja conversamos.\nJá consertei tudo aqui, mas  terei que começar nossa conversa do zero.\nComo voce gostaria que eu te chame?",
-"opcoes_categorias":"Então {nome_cliente}, hoje voce está com fome de que?\n{categorias}\nEscolha uma categoria",
-"opcoes_produtos":"Ok {nome_cliente}, aqui estao nossas opções de {nome_categoria}...\n Temos essas opções:\n{produtos}\nQual voce escolhe?",
-"valores_produto":"Voce escolheu {nome_produto}.\nQual opção?:\n{valores_produto}",
-"acompanhamentos_produto":"Voce deseja adicionar algum acompanhamento abaixo ao pedido?\nEscolha sua opção de _*{nome_acompanhamento}*_\n\n{acompanhamentos_produto}",
-"extras":"Deseja adicionar algum item extra?\n Temos essas opções:\n\n{extras}",
-"item_inexistente":"Voce escolheu uma opção inválida, digite uma das opções abaixo:",
-"remover_item":"Digite o numero do item que deseja remover",
-"forma_pagamento":"O valor total do seu pedido foi *R${total_pedido}*\n Qual será a forma de pagamento?",
-"endereco_rua":"Em qual rua voce mora?",
-"endereco_bairro":"Qual bairro?",
-"endereco_numero":"Qual o numero da sua casa/predio?",
-"endereco_comp":"Algum complemento? (nº do apt, bloco e etc.)",
-"endereco_ref":"Algum ponto de referencia para ajudar nosso entregador?"
+    "categorias_menu":[
+        {
+            "nome":"Hamburgers",
+            "itens":[
+                {
+                    "nome":"Caratinga",
+                    "descricao":"blend artesanal 100g, queijo mussarela, bacon, presunto, frango, ovo, alface e tomate",
+                    "valores":[
+                        {
+                            "nome":"",
+                            "valor":17.69
+                        }
+                    ],
+                    "extras":[
+                        {
+                            "nome":"milho e batata",
+                            "valor":1
+                        },
+                        {
+                            "nome":"quiejo",
+                            "valor":1.5
+                        },
+                        {
+                            "nome":"bacon",
+                            "valor":2
+                        },
+                        {
+                            "nome":"farofa de bacon",
+                            "valor":2
+                        },
+                        {
+                            "nome":"blend artesanal 100g",
+                            "valor":6.5
+                        },
+                        {
+                            "nome":"quejo mussarela",
+                            "valor":1
+                        },
+                        {
+                            "nome":"queijo chedar",
+                            "valor":1
+                        },
+                        {
+                            "nome":"queijo chedar cremoso",
+                            "valor":1.5
+                        },
+                        {
+                            "nome":"presunto",
+                            "valor":1
+                        }
+                    ]
+                },
+                {
+                    "nome":"Ubaporanga",
+                    "descricao":"blend artesanal 100g, queijo mussarela, bacon, alface e tomate",
+                    "valores":[
+                        {
+                            "nome":"",
+                            "valor":14.69
+                        }
+                    ],
+                    "extras":[
+                        {
+                            "nome":"milho e batata",
+                            "valor":1
+                        },
+                        {
+                            "nome":"quiejo",
+                            "valor":1.5
+                        },
+                        {
+                            "nome":"bacon",
+                            "valor":2
+                        },
+                        {
+                            "nome":"farofa de bacon",
+                            "valor":2
+                        },
+                        {
+                            "nome":"blend artesanal 100g",
+                            "valor":6.5
+                        },
+                        {
+                            "nome":"quejo mussarela",
+                            "valor":1
+                        },
+                        {
+                            "nome":"queijo chedar",
+                            "valor":1
+                        },
+                        {
+                            "nome":"queijo chedar cremoso",
+                            "valor":1.5
+                        },
+                        {
+                            "nome":"presunto",
+                            "valor":1
+                        }
+                    ]
+                },
+                {
+                    "nome":"Inhapim",
+                    "descricao":"blend artesanal 100g, queijo mussarela em dobro, frango desfiado, alface e tomate",
+                    "valores":[
+                        {
+                            "nome":"",
+                            "valor":15.69
+                        }
+                    ],
+                    "extras":[
+                        {
+                            "nome":"milho e batata",
+                            "valor":1
+                        },
+                        {
+                            "nome":"quiejo",
+                            "valor":1.5
+                        },
+                        {
+                            "nome":"bacon",
+                            "valor":2
+                        },
+                        {
+                            "nome":"farofa de bacon",
+                            "valor":2
+                        },
+                        {
+                            "nome":"blend artesanal 100g",
+                            "valor":6.5
+                        },
+                        {
+                            "nome":"quejo mussarela",
+                            "valor":1
+                        },
+                        {
+                            "nome":"queijo chedar",
+                            "valor":1
+                        },
+                        {
+                            "nome":"queijo chedar cremoso",
+                            "valor":1.5
+                        },
+                        {
+                            "nome":"presunto",
+                            "valor":1
+                        }
+                    ]
+                },
+                {
+                    "nome":"Bom jesus do galho",
+                    "descricao":"blend artesanal 100g, queijo mussarela, queijo gorgonzola, chedar e cebola caramelizada",
+                    "valores":[
+                        {
+                            "nome":"",
+                            "valor":16.69
+                        }
+                    ],
+                    "extras":[
+                        {
+                            "nome":"milho e batata",
+                            "valor":1
+                        },
+                        {
+                            "nome":"quiejo",
+                            "valor":1.5
+                        },
+                        {
+                            "nome":"bacon",
+                            "valor":2
+                        },
+                        {
+                            "nome":"farofa de bacon",
+                            "valor":2
+                        },
+                        {
+                            "nome":"blend artesanal 100g",
+                            "valor":6.5
+                        },
+                        {
+                            "nome":"quejo mussarela",
+                            "valor":1
+                        },
+                        {
+                            "nome":"queijo chedar",
+                            "valor":1
+                        },
+                        {
+                            "nome":"queijo chedar cremoso",
+                            "valor":1.5
+                        },
+                        {
+                            "nome":"presunto",
+                            "valor":1
+                        }
+                    ]
+                },
+                {
+                    "nome":"Santa Rita",
+                    "descricao":"blend artesanal 100g, bacon, presunto, alface e tomate",
+                    "valores":[
+                        {
+                            "nome":"",
+                            "valor":12.99
+                        }
+                    ],
+                    "extras":[
+                        {
+                            "nome":"milho e batata",
+                            "valor":1
+                        },
+                        {
+                            "nome":"quiejo",
+                            "valor":1.5
+                        },
+                        {
+                            "nome":"bacon",
+                            "valor":2
+                        },
+                        {
+                            "nome":"farofa de bacon",
+                            "valor":2
+                        },
+                        {
+                            "nome":"blend artesanal 100g",
+                            "valor":6.5
+                        },
+                        {
+                            "nome":"quejo mussarela",
+                            "valor":1
+                        },
+                        {
+                            "nome":"queijo chedar",
+                            "valor":1
+                        },
+                        {
+                            "nome":"queijo chedar cremoso",
+                            "valor":1.5
+                        },
+                        {
+                            "nome":"presunto",
+                            "valor":1
+                        }
+                    ]
+                },
+                {
+                    "nome":"Entre Folhas",
+                    "descricao":"blend artesanal 100g, queijo mussarela, farofa de bacon, alface e tomate",
+                    "valores":[
+                        {
+                            "nome":"",
+                            "valor":12.39
+                        }
+                    ],
+                    "extras":[
+                        {
+                            "nome":"milho e batata",
+                            "valor":1
+                        },
+                        {
+                            "nome":"quiejo",
+                            "valor":1.5
+                        },
+                        {
+                            "nome":"bacon",
+                            "valor":2
+                        },
+                        {
+                            "nome":"farofa de bacon",
+                            "valor":2
+                        },
+                        {
+                            "nome":"blend artesanal 100g",
+                            "valor":6.5
+                        },
+                        {
+                            "nome":"quejo mussarela",
+                            "valor":1
+                        },
+                        {
+                            "nome":"queijo chedar",
+                            "valor":1
+                        },
+                        {
+                            "nome":"queijo chedar cremoso",
+                            "valor":1.5
+                        },
+                        {
+                            "nome":"presunto",
+                            "valor":1
+                        }
+                    ]
+                }
+            ],
+            "acompanhamentos":[
+                {
+                    "nome":"Molho especial",
+                    "opcoes":[
+                        {
+                            "nome":"Maionese temperada",
+                            "valor":0
+                        },
+                        {
+                            "nome":"Molho de alho",
+                            "valor":0
+                        },
+                        {
+                            "nome":"Molho tártaro",
+                            "valor":0
+                        },
+                        {
+                            "nome":"Molho gorgonzola",
+                            "valor":0
+                        },
+                        {
+                            "nome":"Molho de azeitona preta",
+                            "valor":0
+                        },
+                        {
+                            "nome":"Sem molho",
+                            "valor":0
+                        }
+                    ]
+                },
+                {
+                    "nome":"Fritas",
+                    "opcoes":[
+                        {
+                            "nome":"Não acompanha fritas",
+                            "valor":0
+                        },
+                        {
+                            "nome":"Bata rustica",
+                            "valor":5
+                        },
+                        {
+                            "nome":"Batata Canoa",
+                            "valor":5
+                        },
+                        {
+                            "nome":"Batata chips",
+                            "valor":5
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "nome":"Pizzas",
+            "itens":[
+                {
+                    "nome":"AMERICANA",
+                    "descricao":"MOLHO DE TOMATE, MUSSARELA, BACON, CALABRESA, OVOS E CEBOLA",
+                    "valores":[
+                        {
+                            "nome":"Broto (4 fatias)",
+                            "valor":12.69
+                        },
+                        {
+                            "nome":"Média (6 fatias)",
+                            "valor":18.69
+                        },
+                        {
+                            "nome":"Grande (8 fatias)",
+                            "valor":23.69
+                        },
+                        {
+                            "nome":"Família (12 fatias)",
+                            "valor":30.69
+                        }
+                    ]
+                },
+                {
+                    "nome":"APRESUNTADA",
+                    "descricao":"MOLHO DE TOMATE, PRESUNTO E MUSSARELA",
+                    "valores":[
+                        {
+                            "nome":"Broto (4 fatias)",
+                            "valor":12.69
+                        },
+                        {
+                            "nome":"Média (6 fatias)",
+                            "valor":18.69
+                        },
+                        {
+                            "nome":"Grande (8 fatias)",
+                            "valor":23.69
+                        },
+                        {
+                            "nome":"Família (12 fatias)",
+                            "valor":30.69
+                        }
+                    ],
+                    "extras":[
+                        {
+                            "nome":"mussarela",
+                            "valor":1.5
+                        },
+                        {
+                            "nome":"bacon",
+                            "valor":2
+                        },
+                        {
+                            "nome":"farofa de bacon",
+                            "valor":2
+                        },
+                        {
+                            "nome":"queijo chedar",
+                            "valor":1
+                        },
+                        {
+                            "nome":"queijo chedar cremoso",
+                            "valor":1.5
+                        },
+                        {
+                            "nome":"presunto",
+                            "valor":1
+                        },
+                        {
+                            "nome":"cebola",
+                            "valor":0
+                        },
+                        {
+                            "nome":"pimentao",
+                            "valor":0
+                        }
+                    ]
+                },
+                {
+                    "nome":"CROCANTE",
+                    "descricao":"MOLHO DE TOMATE, MUSSARELA (2 CAMADAS), CATUPIRY, BATATA PALHA (DEPOIS DE ASSADA)",
+                    "valores":[
+                        {
+                            "nome":"Broto (4 fatias)",
+                            "valor":12.69
+                        },
+                        {
+                            "nome":"Média (6 fatias)",
+                            "valor":18.69
+                        },
+                        {
+                            "nome":"Grande (8 fatias)",
+                            "valor":23.69
+                        },
+                        {
+                            "nome":"Família (12 fatias)",
+                            "valor":30.69
+                        }
+                    ],
+                    "extras":[
+                        {
+                            "nome":"mussarela",
+                            "valor":1.5
+                        },
+                        {
+                            "nome":"bacon",
+                            "valor":2
+                        },
+                        {
+                            "nome":"farofa de bacon",
+                            "valor":2
+                        },
+                        {
+                            "nome":"queijo chedar",
+                            "valor":1
+                        },
+                        {
+                            "nome":"queijo chedar cremoso",
+                            "valor":1.5
+                        },
+                        {
+                            "nome":"presunto",
+                            "valor":1
+                        },
+                        {
+                            "nome":"cebola",
+                            "valor":0
+                        },
+                        {
+                            "nome":"pimentao",
+                            "valor":0
+                        }
+                    ]
+                },
+                {
+                    "nome":"MILHO",
+                    "descricao":"MOLHO DE TOMATE, MUSSARELA E MILHO",
+                    "valores":[
+                        {
+                            "nome":"Broto (4 fatias)",
+                            "valor":12.69
+                        },
+                        {
+                            "nome":"Média (6 fatias)",
+                            "valor":18.69
+                        },
+                        {
+                            "nome":"Grande (8 fatias)",
+                            "valor":23.69
+                        },
+                        {
+                            "nome":"Família (12 fatias)",
+                            "valor":30.69
+                        }
+                    ],
+                    "extras":[
+                        {
+                            "nome":"mussarela",
+                            "valor":1.5
+                        },
+                        {
+                            "nome":"bacon",
+                            "valor":2
+                        },
+                        {
+                            "nome":"farofa de bacon",
+                            "valor":2
+                        },
+                        {
+                            "nome":"queijo chedar",
+                            "valor":1
+                        },
+                        {
+                            "nome":"queijo chedar cremoso",
+                            "valor":1.5
+                        },
+                        {
+                            "nome":"presunto",
+                            "valor":1
+                        },
+                        {
+                            "nome":"cebola",
+                            "valor":0
+                        },
+                        {
+                            "nome":"pimentao",
+                            "valor":0
+                        }
+                    ]
+                },
+                {
+                    "nome":"BACON",
+                    "descricao":"MOLHO DE TOMATE, MUSSARELA E BACON",
+                    "valores":[
+                        {
+                            "nome":"Broto (4 fatias)",
+                            "valor":12.69
+                        },
+                        {
+                            "nome":"Média (6 fatias)",
+                            "valor":18.69
+                        },
+                        {
+                            "nome":"Grande (8 fatias)",
+                            "valor":23.69
+                        },
+                        {
+                            "nome":"Família (12 fatias)",
+                            "valor":30.69
+                        }
+                    ],
+                    "extras":[
+                        {
+                            "nome":"mussarela",
+                            "valor":1.5
+                        },
+                        {
+                            "nome":"bacon",
+                            "valor":2
+                        },
+                        {
+                            "nome":"farofa de bacon",
+                            "valor":2
+                        },
+                        {
+                            "nome":"queijo chedar",
+                            "valor":1
+                        },
+                        {
+                            "nome":"queijo chedar cremoso",
+                            "valor":1.5
+                        },
+                        {
+                            "nome":"presunto",
+                            "valor":1
+                        },
+                        {
+                            "nome":"cebola",
+                            "valor":0
+                        },
+                        {
+                            "nome":"pimentao",
+                            "valor":0
+                        }
+                    ]
+                },
+                {
+                    "nome":"FRANGO C/ CATUPIRY",
+                    "descricao":"MOLHO DE TOMATE, MUSSARELA, FRANGO DESFIADO AO MOLHO DE CATUPIRY",
+                    "valores":[
+                        {
+                            "nome":"Broto (4 fatias)",
+                            "valor":12.69
+                        },
+                        {
+                            "nome":"Média (6 fatias)",
+                            "valor":18.69
+                        },
+                        {
+                            "nome":"Grande (8 fatias)",
+                            "valor":23.69
+                        },
+                        {
+                            "nome":"Família (12 fatias)",
+                            "valor":30.69
+                        }
+                    ],
+                    "extras":[
+                        {
+                            "nome":"mussarela",
+                            "valor":1.5
+                        },
+                        {
+                            "nome":"bacon",
+                            "valor":2
+                        },
+                        {
+                            "nome":"farofa de bacon",
+                            "valor":2
+                        },
+                        {
+                            "nome":"queijo chedar",
+                            "valor":1
+                        },
+                        {
+                            "nome":"queijo chedar cremoso",
+                            "valor":1.5
+                        },
+                        {
+                            "nome":"presunto",
+                            "valor":1
+                        },
+                        {
+                            "nome":"cebola",
+                            "valor":0
+                        },
+                        {
+                            "nome":"pimentao",
+                            "valor":0
+                        }
+                    ]
+                }
+            ],
+            "acompanhamentos":[
+                {
+                    "nome":"Borda",
+                    "opcoes":[
+                        {
+                            "nome":"Chedar",
+                            "valor":3
+                        },
+                        {
+                            "nome":"Gorgonzola",
+                            "valor":4
+                        },
+                        {
+                            "nome":"Catupiry",
+                            "valor":3
+                        },
+                        {
+                            "nome":"Sem Borda",
+                            "valor":0
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "nome":"Bebidas",
+            "itens":[
+                {
+                    "nome":"Refrigerantes 2L",
+                    "descricao":"",
+                    "valores":[
+                        {
+                            "nome":"Coca-cola",
+                            "valor":10
+                        },
+                        {
+                            "nome":"Guaraná Antartica",
+                            "valor":9
+                        },
+                        {
+                            "nome":"Fanta Laranja",
+                            "valor":9
+                        }
+                    ]
+                },
+                {
+                    "nome":"Refrigerantes 1L",
+                    "descricao":"",
+                    "valores":[
+                        {
+                            "nome":"Coca-cola",
+                            "valor":7
+                        },
+                        {
+                            "nome":"Guaraná Antartica",
+                            "valor":6
+                        },
+                        {
+                            "nome":"Fanta Laranja",
+                            "valor":6
+                        }
+                    ]
+                },
+                {
+                    "nome":"Refrigerantes Lata",
+                    "descricao":"",
+                    "valores":[
+                        {
+                            "nome":"Coca-cola",
+                            "valor":5
+                        },
+                        {
+                            "nome":"Guaraná Antartica",
+                            "valor":4
+                        },
+                        {
+                            "nome":"Fanta Laranja",
+                            "valor":4
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "replaces":{
+        "voltar_menu_principal":"Voltar ao início",
+        "voltar_menu_categorias":"Voltar a listagem de produtos",
+        "voltar_item":"Voltar ao item anterior",
+        "sem_extras":"Não quero nenhum extra",
+        "extras_selecionados":"Você ja adiciou esses extras:",
+        "adicionar_mais_extras":"Deseja adicionar mais algum?",
+        "concluir_item":"Concluir",
+        "descartar_produto":"Descartar esse produto",
+        "confirmar_produto":"Confirmar e adicionar item ao carrinho",
+        "adicionar_mais":"Adicionar outro item",
+        "remover_item":"Remover um dos itens",
+        "cancelar_tudo":"Cancelar tudo e recomeçar pedido",
+        "confirmar_endereco":"Confirmar endereço",
+        "alterar_endereco":"Alterar endereço",
+        "confirmar_pedido":"Confirmar e finalizar pedido",
+        "sem_troco":"Não preciso de troco",
+        "troco_para":"Troco para R$ ",
+        "nao_precisa_troco":"Troco: --"
+    },
+    "apresentar":"Oi, eu sou Biel, o robozinho atendente aqui da lanchonete, vou anotar o seu pedido!\nQual é o seu nome?\n",
+    "mensagem_pane":"Desculpe, meus parafusos estavam soltos e acabei perdendo alguma coisa que ja conversamos.\nJá consertei tudo aqui, mas  terei que começar nossa conversa do zero.\nComo voce gostaria que eu te chame?",
+    "opcoes_categorias":"Então {nome_cliente}, hoje voce está com fome de que?\n{categorias}\nEscolha uma categoria",
+    "opcoes_produtos":"Ok {nome_cliente}, aqui estao nossas opções de {nome_categoria}...\n Temos essas opções:\n{produtos}\nQual voce escolhe?",
+    "valores_produto":"Voce escolheu {nome_produto}.\nQual opção?:\n{valores_produto}",
+    "acompanhamentos_produto":"Voce deseja adicionar algum acompanhamento abaixo ao pedido?\nEscolha sua opção de _*{nome_acompanhamento}*_\n\n{acompanhamentos_produto}",
+    "extras":"Deseja adicionar algum item extra?\n Temos essas opções:\n\n{extras}",
+    "item_inexistente":"Voce escolheu uma opção inválida, digite uma das opções abaixo:",
+    "remover_item":"Digite o numero do item que deseja remover",
+    "forma_pagamento":"O valor total do seu pedido foi *R${total_pedido}*\n Qual será a forma de pagamento?",
+    "troco":"Precisa de troco? Para qual valor?\n ```(digite apenas numeros)```",
+    "endereco_rua":"Vamos agora pegar os dados da entrega (ou voce pode escolher uma das opções no final).\n\nEm qual rua voce mora?",
+    "endereco_bairro":"Qual bairro?",
+    "endereco_numero":"Qual o numero da sua casa/predio?",
+    "endereco_comp":"Algum complemento? (nº do apt, bloco e etc.)",
+    "endereco_ref":"Algum ponto de referencia para ajudar nosso entregador?",
+    "confirmacao_endereco":"O endereço esta correto?\n{endereco_rua}, {endereco_numero} - {endereco_comp}\n{endereco_bairro} ({endereco_ref})",
+    "confirmacao_geral":"Confirme *todos* os dados do seu pedido",
+    "confirmacao_entrega":"Agora sobre a entrega:",
+    "confirmacao_forma_pagamento":"Forma de pagamento: {forma_pagamento} {troco}",
+    "agradecimento":"Muito obrigado por nos ecolher {nome_cliente}!!\nSeu pedido está anotado, e logo logo eu volto para te atualizar sobre a produção e entrega!\n Sempre que bater aquela fome é só me chamar aqui."
 }

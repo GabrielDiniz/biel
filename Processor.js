@@ -51,9 +51,20 @@ module.exports = class Processor {
 			case "forma_pagamento":
 				return this.formaPagamento(msg);
 				break;
+			case "perguntar_troco":
+				return this.perguntarTroco(msg);
 			case "coletar_endereco":
 				return this.coletarEndereco(msg);
 				break;
+			case "confirmar_endereco":
+				return this.confirmarEndereco(msg);
+				break;
+			case "confirmacao_geral":
+				return this.finalizarAtendimento(msg);
+				break;
+			case "pedido_finalizado":
+				msg="F";
+				return this.finalizarAtendimento(msg);
 			default:
 				return this.default(msg);
 		}
@@ -303,7 +314,7 @@ module.exports = class Processor {
 			return this.mensagem.getListagemPedidoRemover(this.pedido);
 		}else if( msg === "C" || msg === "c" ){ //concluir pedido
 			this.statusConversa="forma_pagamento";
-			this.mensagem.replaces.toal_pedido=this.pedido.total;
+			this.mensagem.replaces.total_pedido=this.pedido.total;
 			return this.mensagem.getFormaPagamento();
 		}else if(this.statusConversa=="remover_item"){
 			const opcao = Number(msg)-1;
@@ -321,13 +332,36 @@ module.exports = class Processor {
 	formaPagamento = (msg) => {
 		if( msg === "C" || msg === "c" ||  msg === "D" || msg === "d" ){
 			this.pedido.forma_pagamento=msg.toUpperCase();
-
+			if (this.pedido.forma_pagamento === "D") {
+				this.mensagem.replaces.forma_pagamento = "Dinheiro";
+				this.statusConversa="perguntar_troco";
+				return this.mensagem.getTroco();
+			}else{
+				this.mensagem.replaces.forma_pagamento = "Cartão";
+				this.mensagem.replaces.troco="";
+			}
 			this.mensagem.replaces.forma_pagamento = (this.pedido.forma_pagamento === "D")?"Dinheiro":"Cartão";
 			this.statusConversa = "coletar_endereco";
 			return this.mensagem.getEnderecoRua();
 		}else{
 			return [this.mensagem.getItemInexistente(),this.mensagem.getFormaPagamento()];
 		}
+	}
+
+	perguntarTroco = (msg) => {
+		if (msg === "N" || msg === "n") {
+			this.mensagem.replaces.troco = this.mensagem.printf("{nao_precisa_troco}");
+			this.statusConversa = "coletar_endereco";
+			return this.mensagem.getEnderecoRua();
+		}else if(! Number.isNaN(parseInt(msg))) {
+			this.pedido.troco = parseInt(msg);
+			this.mensagem.replaces.troco = this.mensagem.printf("({troco_para} "+this.pedido.troco+")");
+			this.statusConversa = "coletar_endereco";
+			return this.mensagem.getEnderecoRua();
+		}else{
+			return ["Valor inválido",this.mensagem.getTroco()];
+		}
+
 	}
 
 	coletarEndereco = (msg) => {
@@ -339,37 +373,63 @@ module.exports = class Processor {
 			this.pedido={};
 			return this.mensagem.getOpcoesCategorias();
 		}else if (this.pedido.rua==undefined) {
-			this.mensagem.replaces.rua = msg;
+			this.mensagem.replaces.endereco_rua = msg;
 			this.pedido.rua = msg;
 			return this.mensagem.getEnderecoBairro();
 		}else if (this.pedido.bairro==undefined) {
-			this.mensagem.replaces.bairro = msg;
+			this.mensagem.replaces.endereco_bairro = msg;
 			this.pedido.bairro = msg;
 			return this.mensagem.getEnderecoNumero();
 		}else if (this.pedido.numero==undefined) {
-			this.mensagem.replaces.numero = msg;
+			this.mensagem.replaces.endereco_numero = msg;
 			this.pedido.numero = msg;
 			return this.mensagem.getEnderecoComplemento();
 		}else if (this.pedido.comp==undefined) {
-			this.mensagem.replaces.comp = msg;
+			this.mensagem.replaces.endereco_comp = msg;
 			this.pedido.comp = msg;
 			return this.mensagem.getEnderecoReferencia();
 		}else if (this.pedido.ref==undefined) {
-			this.mensagem.replaces.ref = msg;
+			this.mensagem.replaces.endereco_ref = msg;
 			this.pedido.ref = msg;
+			this.statusConversa="confirmar_endereco"
 			return this.mensagem.getConfirmacaoEndereco();
 		}else{
-			if( msg === "C" || msg === "c" ){
-				this.statusConversa = "confirmacao_geral";
-				return this.mensagem.getConfirmacaoGeral()
-			}else if (msg === "A" || msg === "a") {
-				this.pedido.rua=undefined;
-				this.pedido.bairro=undefined;
-				this.pedido.numero=undefined;
-				this.pedido.comp=undefined;
-				this.pedido.ref=undefined;
-				return this.mensagem.getEnderecoRua(); 
-			}
+			
+		}
+	}
+
+	confirmarEndereco = (msg) =>{
+		if( msg === "C" || msg === "c" ){
+			this.statusConversa = "confirmacao_geral";
+			return this.mensagem.getConfirmacaoGeral(this.pedido);
+		}else if (msg === "A" || msg === "a") {
+			delete this.pedido.rua;
+			delete this.pedido.bairro;
+			delete this.pedido.numero;
+			delete this.pedido.comp;
+			delete this.pedido.ref;
+			this.statusConversa = "coletar_endereco";
+			return this.mensagem.getEnderecoRua(); 
+		}else{
+			return [this.mensagem.getItemInexistente(),this.mensagem.getConfirmacaoEndereco()];
+		}
+	}
+
+
+	finalizarAtendimento = (msg) =>{
+		if (msg === "C" || msg === "c") {
+			this.reiniciarPedidoAtual();
+			this.pedido={};
+			return this.mensagem.getOpcoesCategorias();
+		}else if (msg ==="F" || msg ==="f") {
+			/**
+			@TODO!!!!
+			implementar comunicação com aplicação externa para notificar o estabelecimento
+			*/
+			this.statusConversa = "pedido_finalizado";
+			return this.mensagem.getAgradecimento();
+		}else{
+			return [this.mensagem.getItemInexistente(),this.mensagem.getConfirmacaoGeral(this.pedido)];
 		}
 	}
 	/**

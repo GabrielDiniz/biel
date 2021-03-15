@@ -15,7 +15,12 @@ module.exports =class Mensagem {
 			descartar_produto:"*D* - {descartar_produto}",
 			pagamento_cartao:"*C* - Cartão de crédito/débito",
 			pagamento_dinheiro:"*D* - Dinheiro",
-			cancelar_tudo:"*C* - {cancelar_tudo}"
+			sem_troco:"*N* - {sem_troco}",
+			cancelar_tudo:"*C* - {cancelar_tudo}",
+			confirmar_endereco:"*C* - {confirmar_endereco}",
+			alterar_endereco:"*A* - {alterar_endereco}",
+			confirmar_pedido:"*F* - {confirmar_pedido}"
+
 		}
 	}
 
@@ -89,75 +94,21 @@ formatação de shchema de mensagens e navegação
 		return this.printf(this.menu.getEnderecoReferencia()+"\n\n"+this.navegacao.adicionar_mais+"\n"+this.navegacao.cancelar_tudo);
 	}
 
+	getConfirmacaoEndereco = () =>{
+		return this.printf(this.menu.getConfirmacaoEndereco()+"\n\n"+this.navegacao.alterar_endereco+"\n"+this.navegacao.confirmar_endereco);
+	}
+	getTroco = ()=>{
+		return this.printf(this.menu.getTroco()+"\n\n"+this.navegacao.sem_troco);
+	}
+	getAgradecimento = ()=>{
+		return this.printf(this.menu.getAgradecimento());
+	}
 /**
 monta forma textual dos menus de opção
 */
 	getListagemPedido = (pedido,removerItem=false) => {
 		let listagem = "";
-		let total=0;
-		pedido.forEach((item,key)=>{
-			let totalItem=0;
-			listagem+="*Item ";
-			listagem+=key+1;
-			listagem+="*: ";
-			listagem+=this.menu.getProduto(item).nome;
-			listagem+="\n";
-			listagem+="_"+this.menu.getProduto(item).descricao+"_";
-			listagem+="\n ";
-			if (this.menu.getValorProduto(item).nome!=="") {
-				listagem+=this.menu.getValorProduto(item).nome;
-				listagem+=" ";
-			}
-			listagem+="R$ ";
-			listagem+=this.formatNumber(this.menu.getValorProduto(item).valor);
-			listagem+="\nAcompanha:\n";
-			
-			totalItem+=this.menu.getValorProduto(item).valor;
-			
-			if (item.acompanhamentos!=undefined) {
-				item.acompanhamentos.forEach((value,key)=>{
-					item.acompanhamentoAtual = key;
-					listagem+="\t+ *";
-					listagem+=this.menu.getAcompanhamento(item).nome
-					listagem+="*: ";
-					listagem+=this.menu.getAcompanhamentoProduto(item).nome;
-					listagem+=" _*R$ ";
-					listagem+=this.formatNumber(this.menu.getAcompanhamentoProduto(item).valor);
-					listagem+="*_";
-					listagem+="\n";
-
-					totalItem+=this.menu.getAcompanhamentoProduto(item).valor;
-				});
-			}
-			listagem+="Extras:\n";
-			if (item.extras != undefined) {
-				item.extras.forEach((value,key)=>{
-					listagem+="\t+ _";
-					listagem+=this.menu.getExtrasProduto(item)[value].nome;
-					listagem+="_ ";
-					listagem+="*R$ ";
-					listagem+=this.formatNumber(this.menu.getExtrasProduto(item)[value].valor);
-					listagem+="*";
-					listagem+="\n";
-
-					totalItem+=this.menu.getExtrasProduto(item)[value].valor;
-
-				});
-			}	
-			listagem+="\n";
-			listagem+="Valor do item: *R$ ";
-			listagem+=this.formatNumber(totalItem);
-			listagem+="*";
-			listagem+="\n";
-			listagem+="\n";
-			item.totalItem = totalItem;
-			total+=totalItem;
-		});
-		pedido.total=total;
-		listagem+="\n";
-		listagem+="Valor total do pedido: *R$ ";
-		listagem+=this.formatNumber(total);
-		listagem+="*";
+		listagem+=this.getPedidoCompleto(pedido);
 		listagem+="\n\n";
 		listagem+=this.navegacao.adicionar_mais;
 		if (!removerItem) {
@@ -172,6 +123,22 @@ monta forma textual dos menus de opção
 	}
 
 	getConfirmacaoItem = (item) => {
+		let listagem = "";
+	
+		listagem += this.getItemPedido(item);
+		listagem+="\n";
+		listagem+="\n";
+			
+
+		listagem+=this.navegacao.confirmar_produto;
+		listagem+="\n";
+		listagem+=this.navegacao.descartar_produto;
+		
+
+		return this.printf(listagem);
+	}
+
+	getItemPedido = (item) => {
 		let listagem = "";
 	
 		let totalItem=0;
@@ -223,17 +190,47 @@ monta forma textual dos menus de opção
 		listagem+="Valor do item: *R$ ";
 		listagem+=this.formatNumber(totalItem);
 		listagem+="*";
-		listagem+="\n";
-		listagem+="\n";
 		item.totalItem=totalItem;
-	
-
-		listagem+=this.navegacao.confirmar_produto;
-		listagem+="\n";
-		listagem+=this.navegacao.descartar_produto;
-		
-
 		return this.printf(listagem);
+	}
+
+	getPedidoCompleto = (pedido) =>{
+		let listagem = "";
+		let total=0;
+		pedido.forEach((item,key)=>{
+			
+			listagem+="*Item ";
+			listagem+=key+1;
+			listagem+="*: ";
+			listagem+=this.getItemPedido(item);
+			listagem+="\n";
+			listagem+="\n";
+			total+=item.totalItem;
+		});
+		pedido.total=total;
+		listagem+="\n";
+		listagem+="Valor total do pedido: *R$ ";
+		listagem+=this.formatNumber(total);
+		listagem+="*";
+		return this.printf(listagem);
+	}
+
+	getConfirmacaoGeral = (pedido) =>{
+		let ret = "";
+		ret+= this.printf(this.menu.getConfirmacaoGeral());
+		ret+= "\n\n";
+		ret+= this.getPedidoCompleto(pedido);
+		ret+="\n";
+		ret+= this.menu.getConfirmacaoFormaPagamento();
+		ret+= "\n\n";
+		ret+= this.menu.getConfirmacaoEntrega();
+		ret+= "\n";
+		ret+= this.menu.getConfirmacaoEndereco();
+		ret+= "\n\n";
+		ret+= this.navegacao.cancelar_tudo;
+		ret+= "\n";
+		ret+= this.navegacao.confirmar_pedido;
+		return this.printf(ret);
 	}
 
 	getListagemPedidoRemover = (pedido) =>{

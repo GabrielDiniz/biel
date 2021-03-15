@@ -130,6 +130,12 @@ confugurações de mensagens
 	getFormaPagamento = () =>{
 		return this.content.forma_pagamento;
 	}
+	getTroco = () =>{
+		return this.content.troco;
+	}
+	getConfirmacaoFormaPagamento = ()=>{
+		return this.content.confirmacao_forma_pagamento;
+	}
 	getEnderecoRua = () =>{
 		return this.content.endereco_rua;
 	}
@@ -144,5 +150,17 @@ confugurações de mensagens
 	}
 	getEnderecoReferencia = () =>{
 		return this.content.endereco_ref;
+	}
+	getConfirmacaoEndereco = ()=>{
+		return this.content.confirmacao_endereco;
+	}
+	getConfirmacaoGeral=() =>{
+		return this.content.confirmacao_geral;
+	}
+	getConfirmacaoEntrega = () =>{
+		return this.content.confirmacao_entrega;
+	}
+	getAgradecimento =()=>{
+		return this.content.agradecimento;
 	}
 }
