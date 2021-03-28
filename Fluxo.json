@@ -1,0 +1,332 @@
+/**
+MENU
+a estrutura menu é composta por uma expressao "mensagem" e uma lista de opcoes
+{
+	mensagem:string, // mensgem a ser exibida para escolher uma das opções
+	opcoes:[opcao1,opcao2,...], // lista de "opções"
+}
+a estrutura opcao é composta do nome da opção, do menu de opções (submenu) ou da lista de dados a ser coletados para açao
+{
+	nome:string, //nome a ser exibido no menu
+	menu:{menu}, // submenu opcional
+	dados:[dado1,dado2,...], // lista de dados a ser coletado para executar a acao
+	acao:webhook // link para acao deve receber o json "acao" e retornar "MensagemResposta"
+
+}
+a estrutura dado é composta pela chave do dado, mensagem a ser exibida e dados de "validacao"
+{
+	chave:string, // nome da variavel [a-z0-9_]
+	mensagem:texto a ser exibido para coleta do dado
+	validacao:{
+		tipo:string, //tipo do dado
+		tamanhoMin:int, // tamnho minimo a ser validado
+		tamanhoMax:int, // tamanho maximo a ser validado
+		callback:webhook, // link de validacao deve receber o json "validacao" e deve retornar o json "respValidacao" opcional
+	}
+}
+
+a estrutura de validacao é composta de "dado"
+{
+	dado:mix // dado a ser validado
+}
+
+a estrutura respValidacao deve conter a informcao de "ok"
+{
+	ok:bool // diz se o dado é valido ou nao
+}
+
+
+a estrutura acao é composta pelo conjunto de dados coletados
+{
+	chave1:valor1,
+	chave2:valor2,
+	...
+}
+
+a estrutura mensagemResposta é composta por mensagem
+{
+	mensagem:string // mensagem de retorno 
+}
+
+*/
+
+{
+	"mensagem":"Bem vindo ao nosso atendimento virtual, que tipo de serviço gostaria de solicitar?",
+	"opcoes": [
+		{
+			"nome":"Serviços de secretaria",
+			"menu":{
+				"mensagem":"Voce esta na secretaria, qual tipo de solicitacao deseja fazer?",
+				"opcoes":[
+					{
+						"nome":"Declaração de regularidade de matricula",
+						"dados":[
+							{
+								"chave":"nome",
+								"mensagem":"Preciso coletar alguns dados.\nPor favor qual seu nome?",
+								"validacao":{
+									"tamanhoMin":5,
+									//"tamanhoMax":0,
+									//"callback":"",
+									"tipo":"string"
+								}
+							},
+							{
+								"chave":"matricula",
+								"mensagem":"Qual seu numero de matricula?",
+								"validacao":{
+									"tamanhoMin":9,
+									"tamanhoMax":9,
+									"callback":"http://localhost/validaMatricula",
+									"tipo":"int"
+								}
+							},
+							{
+								"chave":"validacpf",
+								"mensagem":"Para garantir o sigilo dos seus dados, digite por favor os 5 primeiros digitos do seu CPF.",
+								"validacao":{
+									"tamanhoMin":5,
+									"tamanhoMax":5,
+									"callback":"http://localhost/validacpf",
+									"tipo":"int"
+								}
+							}
+						],
+						"acao":"http://localhost/regularidadeMatricula"
+					},
+					{
+						"nome":"Pedido de emissao de historico escolar",
+						"dados":[
+							{
+								"chave":"nome",
+								"mensagem":"Preciso coletar alguns dados.\nPor favor qual seu nome?",
+								"validacao":{
+									"tamanhoMin":5,
+									//"tamanhoMax":0,
+									//"callback":"",
+									"tipo":"string"
+								}
+							},
+							{
+								"chave":"matricula",
+								"mensagem":"Qual seu numero de matricula?",
+								"validacao":{
+									"tamanhoMin":9,
+									"tamanhoMax":9,
+									"callback":"http://localhost/validaMatricula",
+									"tipo":"int"
+								}
+							},
+							{
+								"chave":"validacpf",
+								"mensagem":"Para garantir o sigilo dos seus dados, digite por favor os 5 primeiros digitos do seu CPF.",
+								"validacao":{
+									"tamanhoMin":5,
+									"tamanhoMax":5,
+									"callback":"http://localhost/validacpf",
+									"tipo":"int"
+								}
+							}
+						],
+						"acao":"http://localhost/historico"
+					},
+					{
+						"nome":"Solicitação de trancamento ou cancelamento de matricula",
+						"dados":[
+							{
+								"chave":"motivo",
+								"mensagem":"Qual motivo do cancelamento?",
+								"validacao":{
+									//"tamanhoMin":5,
+									//"tamanhoMax":0,
+									//"callback":"",
+									"tipo":"enum",
+									"enum":{
+										"opcoes":["Motivos financeiros","Não gostei do curso","Prefiro não especificar"],
+										"outro":"Caso nao tenha a opção que defina o motivo do cancelamento voce pode digitar livremente"
+									}
+								}
+							},
+							{
+								"chave":"nome",
+								"mensagem":"Preciso coletar alguns dados.\nPor favor qual seu nome?",
+								"validacao":{
+									"tamanhoMin":5,
+									//"tamanhoMax":0,
+									//"callback":"",
+									"tipo":"string"
+								}
+							},
+							{
+								"chave":"matricula",
+								"mensagem":"Qual seu numero de matricula?",
+								"validacao":{
+									"tamanhoMin":9,
+									"tamanhoMax":9,
+									"callback":"http://localhost/validaMatricula",
+									"tipo":"int"
+								}
+							},
+							{
+								"chave":"validacpf",
+								"mensagem":"Para garantir o sigilo dos seus dados, digite por favor os 5 primeiros digitos do seu CPF.",
+								"validacao":{
+									"tamanhoMin":5,
+									"tamanhoMax":5,
+									"callback":"http://localhost/validacpf",
+									"tipo":"int"
+								}
+							}
+						],
+						"acao":"http://localhost/cancelamentoMatricula"
+					},
+				]
+			}
+		},
+		{
+			"nome":"Serviços de tesouraria",
+			"menu":{
+				"mensagem":"Voce esta na tesouraria, qual tipo de solicitacao deseja fazer?",
+				"opcoes":[
+					{
+						"nome":"Quero uma segunda via de boleto",
+						"dados":[
+							{
+								"chave":"nome",
+								"mensagem":"Preciso coletar alguns dados.\nPor favor qual seu nome?",
+								"validacao":{
+									"tamanhoMin":5,
+									//"tamanhoMax":0,
+									//"callback":"",
+									"tipo":"string"
+								}
+							},
+							{
+								"chave":"matricula",
+								"mensagem":"Qual seu numero de matricula?",
+								"validacao":{
+									"tamanhoMin":9,
+									"tamanhoMax":9,
+									"callback":"http://localhost/validaMatricula",
+									"tipo":"int"
+								}
+							},
+							{
+								"chave":"validacpf",
+								"mensagem":"Para garantir o sigilo dos seus dados, digite por favor os 5 primeiros digitos do seu CPF.",
+								"validacao":{
+									"tamanhoMin":5,
+									"tamanhoMax":5,
+									"callback":"http://localhost/validacpf",
+									"tipo":"int"
+								}
+							},
+							{
+								"chave":"parcela",
+								"mensagem":"De qual parcela deseja uma segunda via?",
+								"validacao":{
+									"tamanhoMin":1,
+									"tamanhoMax":1,
+									"callback":"http://localhost/validaParcela",
+									"tipo":"int"
+								}
+							}
+
+						],
+						"acao":"http://localhost/segundaViaBoleto"
+					},
+					{
+						"nome":"Meu boleto veio com valor errado",
+						"dados":[
+							{
+								"chave":"nome",
+								"mensagem":"Preciso coletar alguns dados.\nPor favor qual seu nome?",
+								"validacao":{
+									"tamanhoMin":5,
+									//"tamanhoMax":0,
+									//"callback":"",
+									"tipo":"string"
+								}
+							},
+							{
+								"chave":"matricula",
+								"mensagem":"Qual seu numero de matricula?",
+								"validacao":{
+									"tamanhoMin":9,
+									"tamanhoMax":9,
+									"callback":"http://localhost/validaMatricula",
+									"tipo":"int"
+								}
+							},
+							{
+								"chave":"validacpf",
+								"mensagem":"Para garantir o sigilo dos seus dados, digite por favor os 5 primeiros digitos do seu CPF.",
+								"validacao":{
+									"tamanhoMin":5,
+									"tamanhoMax":5,
+									"callback":"http://localhost/validacpf",
+									"tipo":"int"
+								}
+							},
+							{
+								"chave":"parcela",
+								"mensagem":"Qual parcela veio com valor errado?",
+								"validacao":{
+									"tamanhoMin":1,
+									"tamanhoMax":1,
+									"callback":"http://localhost/validaParcela",
+									"tipo":"int"
+								}
+							}
+
+						],
+						"acao":"http://localhost/segundaViaBoleto"
+					}
+				]
+			}
+		},
+		{
+			"nome":"Serviços da coordenacao de curso",
+			"dados":[
+				{
+					"chave":"nome",
+					"mensagem":"Por aqui voce consegue marcar um horário para conversar com o coodenador do seu curso. Antes, preciso coletar alguns dados.\nPor favor qual seu nome?",
+					"validacao":{
+						"tamanhoMin":5,
+						"tipo":"string"
+					}
+				},
+				{
+					"chave":"matricula",
+					"mensagem":"Qual seu numero de matricula?",
+					"validacao":{
+						"tamanhoMin":9,
+						"tamanhoMax":9,
+						"callback":"http://localhost/validaMatricula",
+						"tipo":"int"
+					}
+				},
+				{
+					"chave":"validacpf",
+					"mensagem":"Para garantir o sigilo dos seus dados, digite por favor os 5 primeiros digitos do seu CPF.",
+					"validacao":{
+						"tamanhoMin":5,
+						"tamanhoMax":5,
+						"callback":"http://localhost/validacpf",
+						"tipo":"int"
+					}
+				},
+				{
+					"chave":"diaDaSemana",
+					"mensagem":"Qual melhor dia da semana para agendar um horario?",
+					"validacao":{
+						"tipo":"enum",
+						"enum":["Segunda-feira","Terça-feira","Quarta-feira","Quinta-feira","Sexta-feira"]
+					}
+				}
+
+			],
+			"acao":"http://localhost/agendaCoordenador"
+		}
+	]
+}
